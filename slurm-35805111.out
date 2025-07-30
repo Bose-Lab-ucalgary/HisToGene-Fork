@@ -1,0 +1,4 @@
+  File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/train.py", line 12
+    max_epochs = 100
+                 ^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?

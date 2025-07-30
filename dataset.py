@@ -765,7 +765,7 @@ class Symbol_Converter:
 
 class ViT_HEST1K(torch.utils.data.Dataset):
     """ViT Dataset for HEST1K data - simplified to match ViT_HER2ST format"""
-    def __init__(self, mode='train', gene_list=None, ds=None, sr=False, fold=0):
+    def __init__(self, mode='train', gene_list=None, sr=False):
         super(ViT_HEST1K, self).__init__()
 
         self.hest_path = Path("/work/bose_lab/tahsin/data/HEST")

@@ -9,7 +9,7 @@ from dataset import ViT_HEST1K
 
 def train(n_genes = 2977,
           lr = 1e-5,
-          max_epochs = 100
+          max_epochs = 100,
           genes = '3CA',
           tag = genes + '-HEST'):
     trainset = ViT_HEST1K(gene_list=genes)
