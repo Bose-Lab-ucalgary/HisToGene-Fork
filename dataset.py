@@ -765,7 +765,7 @@ class Symbol_Converter:
 
 class ViT_HEST1K(torch.utils.data.Dataset):
     """ViT Dataset for HEST1K data - simplified to match ViT_HER2ST format"""
-    def __init__(self, mode='train', gene_list=None, sr=False):
+    def __init__(self, mode='train', gene_list='3CA', sr=False):
         super(ViT_HEST1K, self).__init__()
 
         self.hest_path = Path("/work/bose_lab/tahsin/data/HEST")
@@ -780,6 +780,8 @@ class ViT_HEST1K(torch.utils.data.Dataset):
             self.processed_path = self.processed_path / 'HER2ST'
         elif gene_list == "3CA":
             self.processed_path = self.processed_path / '3CA_genes'
+        elif gene_list == "3CA-copy":
+            self.processed_path = self.processed_path / '3CA_genes_copy'
         elif gene_list == "Hallmark":
             self.processed_path = self.processed_path / 'Hallmark_genes'
 
@@ -819,10 +821,14 @@ class ViT_HEST1K(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         sample_id = self.sample_ids[idx]
-        adata_path = os.path.join(self.processed_path, f"{sample_id}_preprocessed.h5ad")
-        adata = ad.read_h5ad(adata_path)
-        
         print(f"\nProcessing sample {sample_id}")
+        adata_path = os.path.join(self.processed_path, f"{sample_id}_preprocessed.h5ad")
+        try:
+            adata = ad.read_h5ad(adata_path)
+        except Exception as e:
+            print(f"Error reading {adata_path}: {e}")
+            raise FileNotFoundError(f"Could not find or read the file: {adata_path}")
+        
         
         # Make var_names unique before any indexing
         if not adata.var_names.is_unique:
@@ -844,14 +850,12 @@ class ViT_HEST1K(torch.utils.data.Dataset):
                 loc[i] = [i // 64, i % 64]  
         
 
-        # Normalize positions to [0, 63] range like HER2ST
+        # Normalize positions to [0, 63] range like HER2ST (HisToGene trained on HER2ST)
         pos_min = loc.min(axis=0)
         pos_max = loc.max(axis=0)
-        
-        # Normalize to [0, 1] then scale to [0, 63]
         loc_normalized = (loc - pos_min) / (pos_max - pos_min + 1e-8)
         loc_scaled = (loc_normalized * 63).astype(int)
-        loc_scaled = np.clip(loc_scaled, 0, 63)  # Ensure within bounds
+        loc_scaled = np.clip(loc_scaled, 0, 63)  
         
         loc = torch.LongTensor(loc_scaled)
     
@@ -873,7 +877,6 @@ class ViT_HEST1K(torch.utils.data.Dataset):
         else:
             patches = np.random.randn(len(adata), 3, 112, 112)
             
-        # In your __getitem__ method, add:
         print(f"Patches shape after loading: {patches.shape}")
         patches = torch.FloatTensor(patches)
         print(f"Patches shape as tensor: {patches.shape}")
