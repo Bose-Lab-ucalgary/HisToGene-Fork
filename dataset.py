@@ -6,6 +6,7 @@ from utils import read_tiff
 import numpy as np
 import torchvision
 import torchvision.transforms as transforms
+from torch.utils.data.dataloader import default_collate
 import scanpy as sc
 from utils import get_data
 import os
@@ -302,44 +303,60 @@ class ViT_HER2ST(torch.utils.data.Dataset):
         exps = self.exp_dict[self.id2name[i]]
         centers = self.center_dict[self.id2name[i]]
         loc = self.loc_dict[self.id2name[i]]
-        locitions = torch.LongTensor(loc)
+        locations = torch.LongTensor(loc)
         patch_dim = 3 * self.r * self.r * 4
 
         if self.sr:
+            # Convert centers to LongTensor for integer operations
             centers = torch.LongTensor(centers)
+            
+            # Find the bounding box of all spatial coordinates
             max_x = centers[:,0].max().item()
             max_y = centers[:,1].max().item()
             min_x = centers[:,0].min().item()
             min_y = centers[:,1].min().item()
+            
+            # Calculate grid resolution for super-resolution
+            # Divide the spatial range into 30 segments for coarse grid mapping
             r_x = (max_x - min_x)//30
             r_y = (max_y - min_y)//30
 
+            # Initialize grid starting from top-left corner
             centers = torch.LongTensor([min_x,min_y]).view(1,-1)
-            locitions = torch.LongTensor([0,0]).view(1,-1)
+            locations = torch.LongTensor([0,0]).view(1,-1)
             x = min_x
             y = min_y
 
+            # Create a regular grid of points for super-resolution
             while y < max_y:  
                 x = min_x            
                 while x < max_x:
+                    # Add new grid point to centers
                     centers = torch.cat((centers,torch.LongTensor([x,y]).view(1,-1)),dim=0)
-                    locitions = torch.cat((locitions,torch.LongTensor([x//r_x,y//r_y]).view(1,-1)),dim=0)
+                    # Map pixel coordinates to grid coordinates
+                    locations = torch.cat((locations,torch.LongTensor([x//r_x,y//r_y]).view(1,-1)),dim=0)
+                    # Move to next x position (56 pixel step size)
                     x += 56                
+                # Move to next y position (56 pixel step size)
                 y += 56
             
+            # Remove the initial dummy point
             centers = centers[1:,:]
-            locitions = locitions[1:,:]
+            locations = locations[1:,:]
 
+            # Extract patches at each grid point
             n_patches = len(centers)
             patches = torch.zeros((n_patches,patch_dim))
             for i in range(n_patches):
                 center = centers[i]
                 x, y = center
+                # Extract square patch around center point
                 patch = im[(x-self.r):(x+self.r),(y-self.r):(y+self.r),:]
+                # Flatten patch to 1D vector
                 patches[i] = patch.flatten()
 
-
-            return patches, locitions, centers
+            # Return patches, grid locations, and pixel coordinates
+            return patches, locations, centers
 
         else:    
             n_patches = len(centers)
@@ -355,9 +372,9 @@ class ViT_HER2ST(torch.utils.data.Dataset):
                 patches[i] = patch.flatten()
 
             if self.train:
-                return patches, locitions, exps
+                return patches, locations, exps
             else: 
-                return patches, locitions, exps, torch.Tensor(centers)
+                return patches, locations, exps, torch.Tensor(centers)
         
     def __len__(self):
         return len(self.exp_dict)
@@ -517,7 +534,7 @@ class ViT_SKIN(torch.utils.data.Dataset):
         exps = self.exp_dict[self.id2name[i]]
         centers = self.center_dict[self.id2name[i]]
         loc = self.loc_dict[self.id2name[i]]
-        locitions = torch.LongTensor(loc)
+        locations = torch.LongTensor(loc)
         patch_dim = 3 * self.r * self.r * 4
 
         if self.sr:
@@ -530,7 +547,7 @@ class ViT_SKIN(torch.utils.data.Dataset):
             r_y = (max_y - min_y)//30
 
             centers = torch.LongTensor([min_x,min_y]).view(1,-1)
-            locitions = torch.LongTensor([0,0]).view(1,-1)
+            locations = torch.LongTensor([0,0]).view(1,-1)
             x = min_x
             y = min_y
 
@@ -538,12 +555,12 @@ class ViT_SKIN(torch.utils.data.Dataset):
                 x = min_x            
                 while x < max_x:
                     centers = torch.cat((centers,torch.LongTensor([x,y]).view(1,-1)),dim=0)
-                    locitions = torch.cat((locitions,torch.LongTensor([x//r_x,y//r_y]).view(1,-1)),dim=0)
+                    locations = torch.cat((locations,torch.LongTensor([x//r_x,y//r_y]).view(1,-1)),dim=0)
                     x += 56                
                 y += 56
             
             centers = centers[1:,:]
-            locitions = locitions[1:,:]
+            locations = locations[1:,:]
 
             n_patches = len(centers)
             patches = torch.zeros((n_patches,patch_dim))
@@ -554,7 +571,7 @@ class ViT_SKIN(torch.utils.data.Dataset):
                 patches[i] = patch.flatten()
 
 
-            return patches, locitions, centers
+            return patches, locations, centers
 
         else:    
             n_patches = len(centers)
@@ -570,9 +587,9 @@ class ViT_SKIN(torch.utils.data.Dataset):
 
             
                 if self.train:
-                    return patches, locitions, exps
+                    return patches, locations, exps
                 else: 
-                    return patches, locitions, exps, torch.Tensor(centers)
+                    return patches, locations, exps, torch.Tensor(centers)
         
     def __len__(self):
         return len(self.exp_dict)
@@ -744,7 +761,7 @@ class SKIN(torch.utils.data.Dataset):
 
 
 def calcADJ(loc, neighs=4, pruneTag='Grid'):
-    """Calculate adjacency matrix for spatial locitions"""
+    """Calculate adjacency matrix for spatial locations"""
     n_spots = len(loc)
     adj = np.zeros((n_spots, n_spots))
     
@@ -764,9 +781,54 @@ class Symbol_Converter:
 
 
 class ViT_HEST1K(torch.utils.data.Dataset):
+    """
+    ViT Dataset for HEST1K data - simplified to match ViT_HER2ST format.
+    This dataset class loads and processes spatial transcriptomics data from the HEST1K dataset
+    for use with Vision Transformer models. It handles loading of gene expression data, spatial
+    coordinates, and corresponding histology image patches.
+    Args:
+        mode (str, optional): Dataset mode. One of 'train', 'val', 'test', or 'All'. 
+            Defaults to 'train'.
+        gene_list (str, optional): Gene list to use. One of 'HER2ST', '3CA', '3CA-copy', 
+            or 'Hallmark'. Defaults to '3CA'.
+        sr (bool, optional): Whether to use super-resolution mode. Defaults to False.
+        cancer_only (bool, optional): Whether to filter to cancer samples only. 
+            Defaults to False.
+    Attributes:
+        hest_path (Path): Path to HEST dataset directory
+        patch_path (Path): Path to preprocessed image patches
+        processed_path (Path): Path to processed data files
+        r (int): Patch radius (56 for 224x224 patches divided by 4)
+        gene_list (str): Gene list being used
+        mode (str): Dataset mode
+        sr (bool): Super-resolution flag
+        sample_ids (list): List of valid sample IDs
+        id2name (dict): Mapping from index to sample ID
+        metadf (DataFrame): Metadata for all samples
+    Returns:
+        For train/val mode:
+            tuple: (patches_flat, loc, exps) where:
+                - patches_flat: Flattened image patches tensor of shape (n_spots, 37632)
+                - loc: Normalized spatial locations tensor of shape (n_spots, 2)
+                - exps: Gene expression matrix tensor of shape (n_spots, n_genes)
+        For test mode:
+            tuple: (patches_flat, loc, exps, centers) where:
+                - patches_flat: Flattened image patches tensor
+                - loc: Normalized spatial locations tensor  
+                - exps: Gene expression matrix tensor
+                - centers: Original pixel coordinates tensor
+    Raises:
+        FileNotFoundError: If processed data path doesn't exist or sample files are missing
+        ValueError: If spatial coordinates are not found in the data
+    Notes:
+        - Spatial coordinates are normalized to [0, 63] range to match HER2ST format
+        - Image patches are expected to be 112x112 RGB images
+        - Gene expression data should be preprocessed and stored as .h5ad files
+        - Errored samples listed in 'errored_h5ads.csv' are automatically excluded
+    """
     """ViT Dataset for HEST1K data - simplified to match ViT_HER2ST format"""
-    def __init__(self, mode='train', gene_list='3CA', sr=False):
-        super(ViT_HEST1K, self).__init__()
+    def __init__(self, mode='train', gene_list='3CA', sr=False, cancer_only =False):
+        super().__init__()
 
         self.hest_path = Path("/work/bose_lab/tahsin/data/HEST")
         self.patch_path = Path("../../../data/HERST_preprocess/patches_112x112") # Same patch size as her2st?
@@ -789,34 +851,42 @@ class ViT_HEST1K(torch.utils.data.Dataset):
             self.processed_path = self.processed_path / 'train'
         elif mode == 'val':
             self.processed_path = self.processed_path / 'val'
+        elif mode == 'All':
+            self.processed_path = self.processed_path / 'test_all_genes'
         else:
             self.processed_path = self.processed_path / 'test'
         
         print(f"Looking for HEST1K data in: {self.processed_path}")
         
         # Get sample IDs from available files
-        if self.processed_path.exists():
-            sample_files = list(self.processed_path.glob("*.h5ad"))
-            self.sample_ids = [file.stem.split('_')[0] for file in sample_files]
-            print(f"Found {len(self.sample_ids)} samples.")
-        else:
-            print(f"Warning: Path {self.processed_path} does not exist. Using dummy data.")
-            self.sample_ids = ['dummy_sample']
+        meta_path = os.path.join(self.hest_path, "HEST_v1_1_0.csv")
+        self.metadf = pd.read_csv(meta_path)
         
-        print('Loading HEST1K data...')
-        # self.img_dict = {i: self.get_img(i) for i in self.sample_ids}
-        # print('Loading metadata...')
-        # self.meta_dict = {i: self.get_meta(i) for i in self.sample_ids}
+        with open('errored_h5ads.csv', 'r') as f:
+            errored_samples = f.read().splitlines()
+            errored_samples = [s.strip() for s in errored_samples if s.strip()]
+            print(f"Found {len(errored_samples)} errored samples in log file")
 
-        # self.gene_set = list(gene_list)
-        # self.exp_dict = {i: scp.transform.log(scp.normalize.library_size_normalize(m[self.gene_set].values)) 
-        #                 for i, m in self.meta_dict.items()}
-        # self.center_dict = {i: np.floor(m[['pixel_x', 'pixel_y']].values).astype(int) 
-        #                    for i, m in self.meta_dict.items()}
-        # self.loc_dict = {i: m[['x', 'y']].values for i, m in self.meta_dict.items()}
-
-        # self.lengths = [len(i) for i in self.meta_dict.values()]
-        # self.cumlen = np.cumsum(self.lengths)
+        # Get sample IDs from available files
+        if self.processed_path.exists():
+            sample_files = list(self.processed_path.glob("*preprocessed.h5ad"))
+            self.sample_ids = [file.stem.split('_')[0] for file in sample_files if file not in errored_samples]
+            if cancer_only:
+                meta = self.metadf.copy().set_index('id')
+                # self.sample_ids = [s for s in self.sample_ids if meta.loc[s, 'disease_state'] == 'cancer']
+                for s in self.sample_ids.copy():
+                    # print(f"Checking sample {s} for cancer state...")
+                    # print(f"Sample {s} meta: {meta.loc[s]}")
+                    if meta.loc[s, 'disease_state'].lower() != 'cancer':
+                        self.sample_ids.remove(s)
+                    # if meta.loc[s, 'organ'].lower() != 'breast':
+                    #     self.sample_ids.remove(s)
+                
+            print(f"Found {len(self.sample_ids)} samples: {self.sample_ids}")
+        else:
+            print(f"Warning: Path {self.processed_path} does not exist.")
+            raise FileNotFoundError(f"Processed path {self.processed_path} not found.")
+            # self.sample_ids = ['dummy_sample']
         self.id2name = dict(enumerate(self.sample_ids))
 
     def __getitem__(self, idx):
@@ -885,49 +955,49 @@ class ViT_HEST1K(torch.utils.data.Dataset):
         patches_flat = patches.view(num_patches, patch_dim)  # Shape: (num_spots, 37632)
     
         
-        # patch_dim = 3 * self.r * self.r * 4
-        # if self.sr:
-        #     # Same super-resolution logic as ViT_HER2ST
-        #     centers = torch.LongTensor(centers)
-        #     max_x = centers[:, 0].max().item()
-        #     max_y = centers[:, 1].max().item()
-        #     min_x = centers[:, 0].min().item()
-        #     min_y = centers[:, 1].min().item()
-        #     r_x = (max_x - min_x) // 30
-        #     r_y = (max_y - min_y) // 30
+        patch_dim = 3 * self.r * self.r * 4
+        if self.sr: #TODO: Test super-resolution? Not used in benchmark
+            # Same super-resolution logic as ViT_HER2ST
+            centers = torch.LongTensor(centers)
+            max_x = centers[:, 0].max().item()
+            max_y = centers[:, 1].max().item()
+            min_x = centers[:, 0].min().item()
+            min_y = centers[:, 1].min().item()
+            r_x = (max_x - min_x) // 30
+            r_y = (max_y - min_y) // 30
 
-        #     centers = torch.LongTensor([min_x, min_y]).view(1, -1)
-        #     locitions = torch.LongTensor([0, 0]).view(1, -1)
-        #     x = min_x
-        #     y = min_y
+            centers = torch.LongTensor([min_x, min_y]).view(1, -1)
+            locations = torch.LongTensor([0, 0]).view(1, -1)
+            x = min_x
+            y = min_y
 
-        #     while y < max_y:
-        #         x = min_x
-        #         while x < max_x:
-        #             centers = torch.cat((centers, torch.LongTensor([x, y]).view(1, -1)), dim=0)
-        #             locitions = torch.cat((locitions, torch.LongTensor([x // r_x, y // r_y]).view(1, -1)), dim=0)
-        #             x += 56
-        #         y += 56
+            while y < max_y:
+                x = min_x
+                while x < max_x:
+                    centers = torch.cat((centers, torch.LongTensor([x, y]).view(1, -1)), dim=0)
+                    locations = torch.cat((locations, torch.LongTensor([x // r_x, y // r_y]).view(1, -1)), dim=0)
+                    x += 56
+                y += 56
 
-        #     centers = centers[1:, :]
-        #     locitions = locitions[1:, :]
+            centers = centers[1:, :]
+            locations = locations[1:, :]
 
-        #     n_patches = len(centers)
-        #     patches = torch.zeros((n_patches, patch_dim))
-        #     for i in range(n_patches):
-        #         center = centers[i]
-        #         x, y = center
-        #         patch = im[(x - self.r):(x + self.r), (y - self.r):(y + self.r), :]
-        #         patches[i] = patch.flatten()
-
-        #     return patches, locitions, centers
             # n_patches = len(centers)
+            # patches = torch.zeros((n_patches, patch_dim))
+            # for i in range(n_patches):
+            #     center = centers[i]
+            #     x, y = center
+            #     patch = im[(x - self.r):(x + self.r), (y - self.r):(y + self.r), :]
+            #     patches[i] = patch.flatten()
+
+            return patches, locations, centers
+        
         exps = torch.Tensor(exps)
         centers = torch.FloatTensor(centers)
         loc = torch.LongTensor(loc)
         # patches = torch.FloatTensor(patches)
 
-        if self.mode == 'train':
+        if self.mode == 'train' or self.mode == 'val':
             return patches_flat, loc, exps
         else:
             return patches_flat, loc, exps, centers
@@ -936,6 +1006,24 @@ class ViT_HEST1K(torch.utils.data.Dataset):
         return len(self.sample_ids)
 
     def _load_patches(self, sample_id, spot_names):
+        """
+        Load image patches for specified spots from an HDF5 file.
+        This method reads image data and barcodes from an HDF5 file, matches the requested
+        spot names with available barcodes, and returns the corresponding image patches.
+        Images are preprocessed to ensure consistent format (3-channel, CxHxW layout).
+        Args:
+            sample_id (str): Identifier for the sample, used to construct the HDF5 file path
+            spot_names (list): List of spot/barcode names to retrieve patches for
+        Returns:
+            np.ndarray: Array of image patches with shape (num_spots, 3, height, width).
+                       For missing spots, zero-filled patches of shape (3, 112, 112) are returned.
+        Notes:
+            - Grayscale images are converted to 3-channel RGB by duplicating the single channel
+            - Color images are transposed from HxWxC to CxHxW format
+            - Missing spots are filled with zero patches of size (3, 112, 112)
+            - Barcodes in the HDF5 file are decoded from bytes to UTF-8 strings if necessary
+        """
+        
         patches = []
         path = os.path.join(self.patch_path, f"{sample_id}.h5")
         
@@ -971,6 +1059,13 @@ class ViT_HEST1K(torch.utils.data.Dataset):
             return adata.var_names.tolist()
         else:
             return []
+        
+# # Add to your dataset or dataloader
+def custom_collate_fn(batch):
+    """Custom collate function to handle variable sample sizes"""
+    # Sort batch by sample complexity/size
+    batch = sorted(batch, key=lambda x: x[0].numel())  # Sort by patch size
+    return default_collate(batch)
 
 if __name__ == '__main__':
     # dataset = VitDataset(diameter=112,sr=True)
@@ -986,7 +1081,7 @@ if __name__ == '__main__':
         sample = dataset[0]
         print(f"Number of return values: {len(sample)}")
         print(f"Patches shape: {sample[0].shape}")
-        print(f"locitions shape: {sample[1].shape}")
+        print(f"locations shape: {sample[1].shape}")
         print(f"Expression shape: {sample[2].shape}")
     
     # Test test mode

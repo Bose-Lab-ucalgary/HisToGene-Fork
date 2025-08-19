@@ -142,9 +142,13 @@ class STModel(pl.LightningModule):
 
 
 class HisToGene(pl.LightningModule):
-    def __init__(self, patch_size=112, n_layers=4, n_genes=1000, dim=1024, learning_rate=1e-4, dropout=0.1, n_pos=64):
+    def __init__(self, patch_size=112, n_layers=4, n_genes=1000, 
+                 dim=1024, learning_rate=1e-4, dropout=0.1, n_pos=64,
+                 # Add dataset parameters
+                 gene_list="HER2ST", prune="NA", neighbors=5, cancer_only=True, dataset_name="HEST1K"
+                ):
         super().__init__()
-        # self.save_hyperparameters()
+        self.save_hyperparameters()
         self.learning_rate = learning_rate
         patch_dim = 3*patch_size*patch_size
         self.patch_embedding = nn.Linear(patch_dim, dim)
@@ -158,7 +162,7 @@ class HisToGene(pl.LightningModule):
         )
 
     def forward(self, patches, centers):
-        print(f"Input patches shape: {patches.shape}")
+        # print(f"Input patches shape: {patches.shape}")
         patches = self.patch_embedding(patches)
         centers_x = self.x_embed(centers[:,:,0])
         centers_y = self.y_embed(centers[:,:,1])
@@ -196,6 +200,35 @@ class HisToGene(pl.LightningModule):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
         parser.add_argument('--learning_rate', type=float, default=0.0001)
         return parser
+
+    def predict_step(self, batch, batch_idx):
+        if len(batch) == 4:  # test mode with centers
+            patch, position, exp, center = batch
+        else:  # train mode without centers
+            patch, position, exp = batch
+            center = None
+    
+        patch, position = patch.to(self.device), position.to(self.device)
+        pred = self(patch, position)
+    
+        # Return predictions and ground truth for comparison
+        return {
+            'predictions': pred.cpu(),
+            'ground_truth': exp.cpu() if exp is not None else None,
+            'centers': center.cpu() if center is not None else None,
+            'positions': position.cpu()
+        }
+        
+    def get_dataset_params(self):
+        """Return dataset parameters for reconstruction"""
+        return {
+            'gene_list': self.hparams.gene_list,
+            'prune': self.hparams.prune,
+            'neighbors': self.hparams.neighbors,
+            'cancer_only': self.hparams.cancer_only,
+            'dataset_name': self.hparams.dataset_name
+        }
+
 
 def count_parameters(model):
         return sum(p.numel() for p in model.parameters() if p.requires_grad)

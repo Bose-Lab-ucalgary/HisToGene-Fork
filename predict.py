@@ -1,12 +1,11 @@
 import torch
+import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from utils import *
-from vis_model import HisToGene
-import warnings
-from dataset import ViT_HER2ST, ViT_SKIN
+import anndata as ann
 from tqdm import tqdm
+import warnings
 warnings.filterwarnings('ignore')
-
 
 MODEL_PATH = ''
 
@@ -66,6 +65,59 @@ def sr_predict(model, test_loader, attention=True,device = torch.device('cpu')):
 
 
     return adata
+
+def model_predict_lightning(model, test_loader, device=torch.device('cpu')):
+    """PyTorch Lightning-based prediction function"""
+    
+    # Create a Lightning trainer for prediction
+    trainer = pl.Trainer(
+        accelerator='gpu' if device.type == 'cuda' else 'cpu',
+        devices=1,
+        logger=False,
+        enable_checkpointing=False,
+        enable_progress_bar=True
+    )
+    
+    # Run predictions
+    results = trainer.predict(model, test_loader)
+    
+    # Concatenate all results
+    all_preds = []
+    all_gt = []
+    all_centers = []
+    
+    for batch_result in results:
+        all_preds.append(batch_result['predictions'])
+        if batch_result['ground_truth'] is not None:
+            all_gt.append(batch_result['ground_truth'])
+        if batch_result['centers'] is not None:
+            all_centers.append(batch_result['centers'])
+    
+    # Concatenate tensors
+    preds = torch.cat(all_preds, dim=0).squeeze().numpy()
+    
+    if all_centers:
+        centers = torch.cat(all_centers, dim=0).squeeze().numpy()
+    else:
+        centers = None
+        
+    if all_gt:
+        gt = torch.cat(all_gt, dim=0).squeeze().numpy()
+    else:
+        gt = None
+    
+    # Create AnnData objects
+    adata_pred = ann.AnnData(preds)
+    if centers is not None:
+        adata_pred.obsm['spatial'] = centers
+    
+    adata_gt = None
+    if gt is not None:
+        adata_gt = ann.AnnData(gt)
+        if centers is not None:
+            adata_gt.obsm['spatial'] = centers
+    
+    return adata_pred, adata_gt
 
 def main():
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
