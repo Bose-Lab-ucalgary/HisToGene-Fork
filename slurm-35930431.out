@@ -1,0 +1,393 @@
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name            | Type       | Params | Mode 
+-------------------------------------------------------
+0 | patch_embedding | Linear     | 38.5 M | train
+1 | x_embed         | Embedding  | 65.5 K | train
+2 | y_embed         | Embedding  | 65.5 K | train
+3 | vit             | ViT        | 67.2 M | train
+4 | gene_head       | Sequential | 3.1 M  | train
+-------------------------------------------------------
+108 M     Trainable params
+0         Non-trainable params
+108 M     Total params
+435.581   Total estimated model params size (MB)
+155       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/train
+Found 421 samples.
+Loading HEST1K data...
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/val
+Found 123 samples.
+Loading HEST1K data...
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/test
+Found 61 samples.
+Loading HEST1K data...
+Sanity Checking: |          | 0/? [00:00<?, ?it/s]Sanity Checking:   0%|          | 0/2 [00:00<?, ?it/s]Sanity Checking DataLoader 0:   0%|          | 0/2 [00:00<?, ?it/s]Input patches shape: torch.Size([1, 4562, 37632])
+Sanity Checking DataLoader 0:  50%|█████     | 1/2 [00:04<00:04,  0.23it/s]Input patches shape: torch.Size([1, 4915, 37632])
+Sanity Checking DataLoader 0: 100%|██████████| 2/2 [00:12<00:00,  0.17it/s]                                                                           Training: |          | 0/? [00:00<?, ?it/s]Training:   0%|          | 0/421 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/421 [00:00<?, ?it/s] Input patches shape: torch.Size([1, 283, 37632])
+Epoch 0:   0%|          | 1/421 [00:04<34:44,  0.20it/s]Epoch 0:   0%|          | 1/421 [00:04<34:44,  0.20it/s, v_num=11]Input patches shape: torch.Size([1, 10005, 37632])
+Epoch 0:   0%|          | 2/421 [00:27<1:35:02,  0.07it/s, v_num=11]Epoch 0:   0%|          | 2/421 [00:27<1:35:02,  0.07it/s, v_num=11]Input patches shape: torch.Size([1, 712, 37632])
+Epoch 0:   1%|          | 3/421 [00:27<1:03:26,  0.11it/s, v_num=11]Epoch 0:   1%|          | 3/421 [00:27<1:03:26,  0.11it/s, v_num=11]Input patches shape: torch.Size([1, 4359, 37632])
+Epoch 0:   1%|          | 4/421 [00:38<1:07:14,  0.10it/s, v_num=11]Epoch 0:   1%|          | 4/421 [00:38<1:07:14,  0.10it/s, v_num=11]Input patches shape: torch.Size([1, 178, 37632])
+Epoch 0:   1%|          | 5/421 [00:39<54:47,  0.13it/s, v_num=11]  Epoch 0:   1%|          | 5/421 [00:39<54:47,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 3206, 37632])
+Epoch 0:   1%|▏         | 6/421 [00:47<54:50,  0.13it/s, v_num=11]Epoch 0:   1%|▏         | 6/421 [00:47<54:50,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 6643, 37632])
+Epoch 0:   2%|▏         | 7/421 [01:02<1:01:15,  0.11it/s, v_num=11]Epoch 0:   2%|▏         | 7/421 [01:02<1:01:15,  0.11it/s, v_num=11]Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:   2%|▏         | 8/421 [01:15<1:04:50,  0.11it/s, v_num=11]Epoch 0:   2%|▏         | 8/421 [01:15<1:04:50,  0.11it/s, v_num=11]Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:   2%|▏         | 9/421 [01:28<1:07:28,  0.10it/s, v_num=11]Epoch 0:   2%|▏         | 9/421 [01:28<1:07:28,  0.10it/s, v_num=11]Input patches shape: torch.Size([1, 1014, 37632])
+Epoch 0:   2%|▏         | 10/421 [01:31<1:02:40,  0.11it/s, v_num=11]Epoch 0:   2%|▏         | 10/421 [01:31<1:02:40,  0.11it/s, v_num=11]Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:   3%|▎         | 11/421 [01:44<1:05:08,  0.10it/s, v_num=11]Epoch 0:   3%|▎         | 11/421 [01:44<1:05:08,  0.10it/s, v_num=11]Input patches shape: torch.Size([1, 1607, 37632])
+Epoch 0:   3%|▎         | 12/421 [01:48<1:01:42,  0.11it/s, v_num=11]Epoch 0:   3%|▎         | 12/421 [01:48<1:01:42,  0.11it/s, v_num=11]Input patches shape: torch.Size([1, 318, 37632])
+Epoch 0:   3%|▎         | 13/421 [01:50<57:43,  0.12it/s, v_num=11]  Epoch 0:   3%|▎         | 13/421 [01:50<57:43,  0.12it/s, v_num=11]Input patches shape: torch.Size([1, 3533, 37632])
+Epoch 0:   3%|▎         | 14/421 [02:00<58:34,  0.12it/s, v_num=11]Epoch 0:   3%|▎         | 14/421 [02:00<58:34,  0.12it/s, v_num=11]Input patches shape: torch.Size([1, 1084, 37632])
+Epoch 0:   4%|▎         | 15/421 [02:03<55:56,  0.12it/s, v_num=11]Epoch 0:   4%|▎         | 15/421 [02:03<55:56,  0.12it/s, v_num=11]Input patches shape: torch.Size([1, 1685, 37632])
+Epoch 0:   4%|▍         | 16/421 [02:08<54:20,  0.12it/s, v_num=11]Epoch 0:   4%|▍         | 16/421 [02:08<54:20,  0.12it/s, v_num=11]Input patches shape: torch.Size([1, 478, 37632])
+Epoch 0:   4%|▍         | 17/421 [02:11<52:01,  0.13it/s, v_num=11]Epoch 0:   4%|▍         | 17/421 [02:11<52:01,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 1604, 37632])
+Epoch 0:   4%|▍         | 18/421 [02:15<50:26,  0.13it/s, v_num=11]Epoch 0:   4%|▍         | 18/421 [02:15<50:26,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 3498, 37632])
+Epoch 0:   5%|▍         | 19/421 [02:24<50:48,  0.13it/s, v_num=11]Epoch 0:   5%|▍         | 19/421 [02:24<50:48,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 1014, 37632])
+Epoch 0:   5%|▍         | 20/421 [02:27<49:14,  0.14it/s, v_num=11]Epoch 0:   5%|▍         | 20/421 [02:27<49:14,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 1165, 37632])
+Epoch 0:   5%|▍         | 21/421 [02:31<47:57,  0.14it/s, v_num=11]Epoch 0:   5%|▍         | 21/421 [02:31<47:57,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 758, 37632])
+Epoch 0:   5%|▌         | 22/421 [02:33<46:18,  0.14it/s, v_num=11]Epoch 0:   5%|▌         | 22/421 [02:33<46:18,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 1388, 37632])
+Epoch 0:   5%|▌         | 23/421 [02:37<45:22,  0.15it/s, v_num=11]Epoch 0:   5%|▌         | 23/421 [02:37<45:22,  0.15it/s, v_num=11]Input patches shape: torch.Size([1, 4269, 37632])
+Epoch 0:   6%|▌         | 24/421 [02:48<46:29,  0.14it/s, v_num=11]Epoch 0:   6%|▌         | 24/421 [02:48<46:29,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 4180, 37632])
+Epoch 0:   6%|▌         | 25/421 [02:57<46:52,  0.14it/s, v_num=11]Epoch 0:   6%|▌         | 25/421 [02:57<46:52,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 7233, 37632])
+Epoch 0:   6%|▌         | 26/421 [03:13<49:03,  0.13it/s, v_num=11]Epoch 0:   6%|▌         | 26/421 [03:13<49:03,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 4132, 37632])
+Epoch 0:   6%|▋         | 27/421 [03:24<49:40,  0.13it/s, v_num=11]Epoch 0:   6%|▋         | 27/421 [03:24<49:40,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 3585, 37632])
+Epoch 0:   7%|▋         | 28/421 [03:33<49:54,  0.13it/s, v_num=11]Epoch 0:   7%|▋         | 28/421 [03:33<49:54,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 328, 37632])
+Epoch 0:   7%|▋         | 29/421 [03:34<48:22,  0.14it/s, v_num=11]Epoch 0:   7%|▋         | 29/421 [03:34<48:22,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 4110, 37632])
+Epoch 0:   7%|▋         | 30/421 [03:45<48:57,  0.13it/s, v_num=11]Epoch 0:   7%|▋         | 30/421 [03:45<48:57,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 325, 37632])
+Epoch 0:   7%|▋         | 31/421 [03:46<47:33,  0.14it/s, v_num=11]Epoch 0:   7%|▋         | 31/421 [03:46<47:33,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 1414, 37632])
+Epoch 0:   8%|▊         | 32/421 [03:51<46:48,  0.14it/s, v_num=11]Epoch 0:   8%|▊         | 32/421 [03:51<46:48,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:   8%|▊         | 33/421 [04:04<47:53,  0.14it/s, v_num=11]Epoch 0:   8%|▊         | 33/421 [04:04<47:53,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 3673, 37632])
+Epoch 0:   8%|▊         | 34/421 [04:14<48:14,  0.13it/s, v_num=11]Epoch 0:   8%|▊         | 34/421 [04:14<48:14,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 2551, 37632])
+Epoch 0:   8%|▊         | 35/421 [04:21<48:01,  0.13it/s, v_num=11]Epoch 0:   8%|▊         | 35/421 [04:21<48:01,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 1949, 37632])
+Epoch 0:   9%|▊         | 36/421 [04:26<47:34,  0.13it/s, v_num=11]Epoch 0:   9%|▊         | 36/421 [04:26<47:34,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 1397, 37632])
+Epoch 0:   9%|▉         | 37/421 [04:30<46:46,  0.14it/s, v_num=11]Epoch 0:   9%|▉         | 37/421 [04:30<46:46,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 3554, 37632])
+Epoch 0:   9%|▉         | 38/421 [04:40<47:02,  0.14it/s, v_num=11]Epoch 0:   9%|▉         | 38/421 [04:40<47:02,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 3712, 37632])
+Epoch 0:   9%|▉         | 39/421 [04:49<47:20,  0.13it/s, v_num=11]Epoch 0:   9%|▉         | 39/421 [04:49<47:20,  0.13it/s, v_num=11]Input patches shape: torch.Size([1, 59, 37632])
+Epoch 0:  10%|▉         | 40/421 [04:50<46:07,  0.14it/s, v_num=11]Epoch 0:  10%|▉         | 40/421 [04:50<46:07,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 1182, 37632])
+Epoch 0:  10%|▉         | 41/421 [04:55<45:35,  0.14it/s, v_num=11]Epoch 0:  10%|▉         | 41/421 [04:55<45:35,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 549, 37632])
+Epoch 0:  10%|▉         | 42/421 [04:57<44:41,  0.14it/s, v_num=11]Epoch 0:  10%|▉         | 42/421 [04:57<44:41,  0.14it/s, v_num=11]Input patches shape: torch.Size([1, 2521, 37632])
+Epoch 0:  10%|█         | 43/421 [05:03<44:27,  0.14it/s, v_num=11]Epoch 0:  10%|█         | 43/421 [05:03<44:27,  0.14it/s, v_num=11]
+Processing sample SPA76
+Patches shape after loading: (283, 3, 112, 112)
+Patches shape as tensor: torch.Size([283, 3, 112, 112])
+
+Processing sample TENX125
+Patches shape after loading: (10005, 3, 112, 112)
+Patches shape as tensor: torch.Size([10005, 3, 112, 112])
+
+Processing sample SPA125
+Patches shape after loading: (712, 3, 112, 112)
+Patches shape as tensor: torch.Size([712, 3, 112, 112])
+
+Processing sample INT13
+Patches shape after loading: (4359, 3, 112, 112)
+Patches shape as tensor: torch.Size([4359, 3, 112, 112])
+
+Processing sample SPA38
+Patches shape after loading: (178, 3, 112, 112)
+Patches shape as tensor: torch.Size([178, 3, 112, 112])
+
+Processing sample INT16
+Patches shape after loading: (3206, 3, 112, 112)
+Patches shape as tensor: torch.Size([3206, 3, 112, 112])
+
+Processing sample TENX111
+Patches shape after loading: (6643, 3, 112, 112)
+Patches shape as tensor: torch.Size([6643, 3, 112, 112])
+
+Processing sample NCBI684
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+
+Processing sample NCBI674
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+
+Processing sample NCBI487
+Patches shape after loading: (1014, 3, 112, 112)
+Patches shape as tensor: torch.Size([1014, 3, 112, 112])
+
+Processing sample NCBI681
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+
+Processing sample NCBI856
+Patches shape after loading: (1607, 3, 112, 112)
+Patches shape as tensor: torch.Size([1607, 3, 112, 112])
+
+Processing sample SPA61
+Patches shape after loading: (318, 3, 112, 112)
+Patches shape as tensor: torch.Size([318, 3, 112, 112])
+
+Processing sample MISC130
+Patches shape after loading: (3533, 3, 112, 112)
+Patches shape as tensor: torch.Size([3533, 3, 112, 112])
+
+Processing sample NCBI870
+Patches shape after loading: (1084, 3, 112, 112)
+Patches shape as tensor: torch.Size([1084, 3, 112, 112])
+
+Processing sample ZEN41
+Patches shape after loading: (1685, 3, 112, 112)
+Patches shape as tensor: torch.Size([1685, 3, 112, 112])
+
+Processing sample SPA68
+Patches shape after loading: (478, 3, 112, 112)
+Patches shape as tensor: torch.Size([478, 3, 112, 112])
+
+Processing sample NCBI866
+Patches shape after loading: (1604, 3, 112, 112)
+Patches shape as tensor: torch.Size([1604, 3, 112, 112])
+
+Processing sample NCBI867
+Patches shape after loading: (3498, 3, 112, 112)
+Patches shape as tensor: torch.Size([3498, 3, 112, 112])
+
+Processing sample MISC60
+Patches shape after loading: (1014, 3, 112, 112)
+Patches shape as tensor: torch.Size([1014, 3, 112, 112])
+
+Processing sample MISC58
+Patches shape after loading: (1165, 3, 112, 112)
+Patches shape as tensor: torch.Size([1165, 3, 112, 112])
+
+Processing sample MEND52
+Patches shape after loading: (758, 3, 112, 112)
+Patches shape as tensor: torch.Size([758, 3, 112, 112])
+
+Processing sample NCBI691
+Patches shape after loading: (1388, 3, 112, 112)
+Patches shape as tensor: torch.Size([1388, 3, 112, 112])
+
+Processing sample TENX152
+Patches shape after loading: (4269, 3, 112, 112)
+Patches shape as tensor: torch.Size([4269, 3, 112, 112])
+
+Processing sample NCBI785
+Patches shape after loading: (4180, 3, 112, 112)
+Patches shape as tensor: torch.Size([4180, 3, 112, 112])
+
+Processing sample TENX96
+Patches shape after loading: (7233, 3, 112, 112)
+Patches shape as tensor: torch.Size([7233, 3, 112, 112])
+
+Processing sample MISC62
+Patches shape after loading: (4132, 3, 112, 112)
+Patches shape as tensor: torch.Size([4132, 3, 112, 112])
+
+Processing sample INT17
+Patches shape after loading: (3585, 3, 112, 112)
+Patches shape as tensor: torch.Size([3585, 3, 112, 112])
+
+Processing sample ZEN45
+Patches shape after loading: (328, 3, 112, 112)
+Patches shape as tensor: torch.Size([328, 3, 112, 112])
+
+Processing sample MISC6
+Patches shape after loading: (4110, 3, 112, 112)
+Patches shape as tensor: torch.Size([4110, 3, 112, 112])
+
+Processing sample SPA153
+Patches shape after loading: (325, 3, 112, 112)
+Patches shape as tensor: torch.Size([325, 3, 112, 112])
+
+Processing sample NCBI475
+Patches shape after loading: (1414, 3, 112, 112)
+Patches shape as tensor: torch.Size([1414, 3, 112, 112])
+
+Processing sample NCBI673
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+
+Processing sample MISC3
+Patches shape after loading: (3673, 3, 112, 112)
+Patches shape as tensor: torch.Size([3673, 3, 112, 112])
+
+Processing sample MISC67
+Patches shape after loading: (2551, 3, 112, 112)
+Patches shape as tensor: torch.Size([2551, 3, 112, 112])
+
+Processing sample INT8
+Patches shape after loading: (1949, 3, 112, 112)
+Patches shape as tensor: torch.Size([1949, 3, 112, 112])
+
+Processing sample NCBI881
+Patches shape after loading: (1397, 3, 112, 112)
+Patches shape as tensor: torch.Size([1397, 3, 112, 112])
+
+Processing sample MEND156
+Patches shape after loading: (3554, 3, 112, 112)
+Patches shape as tensor: torch.Size([3554, 3, 112, 112])
+
+Processing sample MEND89
+Patches shape after loading: (3712, 3, 112, 112)
+Patches shape as tensor: torch.Size([3712, 3, 112, 112])
+
+Processing sample SPA47
+Patches shape after loading: (59, 3, 112, 112)
+Patches shape as tensor: torch.Size([59, 3, 112, 112])
+
+Processing sample NCBI762
+Patches shape after loading: (1182, 3, 112, 112)
+Patches shape as tensor: torch.Size([1182, 3, 112, 112])
+
+Processing sample NCBI517
+Patches shape after loading: (549, 3, 112, 112)
+Patches shape as tensor: torch.Size([549, 3, 112, 112])
+
+Processing sample NCBI884
+Patches shape after loading: (2521, 3, 112, 112)
+Patches shape as tensor: torch.Size([2521, 3, 112, 112])
+
+Processing sample TENX73
+Patches shape after loading: (10878, 3, 112, 112)
+Patches shape as tensor: torch.Size([10878, 3, 112, 112])
+
+Processing sample NCBI859
+Patches shape after loading: (1116, 3, 112, 112)
+Patches shape as tensor: torch.Size([1116, 3, 112, 112])
+
+Processing sample NCBI703
+Patches shape after loading: (453, 3, 112, 112)
+Patches shape as tensor: torch.Size([453, 3, 112, 112])
+
+Processing sample INT14
+Patches shape after loading: (4562, 3, 112, 112)
+Patches shape as tensor: torch.Size([4562, 3, 112, 112])
+
+Processing sample INT18
+Patches shape after loading: (4915, 3, 112, 112)
+Patches shape as tensor: torch.Size([4915, 3, 112, 112])
+
+Processing sample INT1
+Patches shape after loading: (1084, 3, 112, 112)
+Patches shape as tensor: torch.Size([1084, 3, 112, 112])
+
+Processing sample INT20
+Patches shape after loading: (4860, 3, 112, 112)
+Patches shape as tensor: torch.Size([4860, 3, 112, 112])
+Input patches shape: torch.Size([1, 10878, 37632])
+Traceback (most recent call last):
+  File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/train.py", line 114, in <module>
+    trainer, best_model_path = train(genes='3CA-copy')
+                               ~~~~~^^^^^^^^^^^^^^^^^^
+  File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/train.py", line 90, in train
+    trainer.fit(model, train_loader, val_loader)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, self._fit_impl, model, train_dataloaders, val_dataloaders, datamodule, ckpt_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 1056, in _run_stage
+    self.fit_loop.run()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/fit_loop.py", line 216, in run
+    self.advance()
+    ~~~~~~~~~~~~^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/fit_loop.py", line 455, in advance
+    self.epoch_loop.run(self._data_fetcher)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 150, in run
+    self.advance(data_fetcher)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 320, in advance
+    batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 192, in run
+    self._optimizer_step(batch_idx, closure)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 270, in _optimizer_step
+    call._call_lightning_module_hook(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        trainer,
+        ^^^^^^^^
+    ...<4 lines>...
+        train_step_and_backward_closure,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/call.py", line 176, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/core/module.py", line 1302, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/core/optimizer.py", line 154, in step
+    step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/strategy.py", line 239, in optimizer_step
+    return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/plugins/precision/precision.py", line 123, in optimizer_step
+    return optimizer.step(closure=closure, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/optim/optimizer.py", line 485, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/optim/optimizer.py", line 79, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/optim/adam.py", line 225, in step
+    loss = closure()
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/plugins/precision/precision.py", line 109, in _wrap_closure
+    closure_result = closure()
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 146, in __call__
+    self._result = self.closure(*args, **kwargs)
+                   ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 140, in closure
+    self._backward_fn(step_output.closure_loss)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 241, in backward_fn
+    call._call_strategy_hook(self.trainer, "backward", loss, optimizer)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/strategy.py", line 213, in backward
+    self.precision_plugin.backward(closure_loss, self.lightning_module, optimizer, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/plugins/precision/precision.py", line 73, in backward
+    model.backward(tensor, *args, **kwargs)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/core/module.py", line 1097, in backward
+    loss.backward(*args, **kwargs)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.05 GiB. GPU 0 has a total capacity of 79.25 GiB of which 5.52 GiB is free. Including non-PyTorch memory, this process has 73.72 GiB memory in use. Of the allocated memory 70.47 GiB is allocated by PyTorch, and 2.76 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+/var/spool/slurmd/job35930431/slurm_script: line 18: 736078 Segmentation fault      (core dumped) python train.py

@@ -1,0 +1,263 @@
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name            | Type       | Params | Mode 
+-------------------------------------------------------
+0 | patch_embedding | Linear     | 38.5 M | train
+1 | x_embed         | Embedding  | 65.5 K | train
+2 | y_embed         | Embedding  | 65.5 K | train
+3 | vit             | ViT        | 67.2 M | train
+4 | gene_head       | Sequential | 3.1 M  | train
+-------------------------------------------------------
+108 M     Trainable params
+0         Non-trainable params
+108 M     Total params
+435.581   Total estimated model params size (MB)
+155       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/train
+Found 421 samples.
+Loading HEST1K data...
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/val
+Found 123 samples.
+Loading HEST1K data...
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes_copy/test
+Found 61 samples.
+Loading HEST1K data...
+VAL Start GPU 0 Memory:
+  Allocated: 0.81 GB
+  Reserved:  0.81 GB
+  Max Allocated: 0.81 GB
+  Max Reserved:  1.22 GB
+Input patches shape: torch.Size([1, 4562, 37632])
+Input patches shape: torch.Size([1, 4915, 37632])
+VAL End GPU 0 Memory:
+  Allocated: 0.82 GB
+  Reserved:  7.29 GB
+  Max Allocated: 4.78 GB
+  Max Reserved:  7.29 GB
+
+Processing sample INT14
+Patches shape after loading: (4562, 3, 112, 112)
+Patches shape as tensor: torch.Size([4562, 3, 112, 112])
+
+Processing sample INT18
+Patches shape after loading: (4915, 3, 112, 112)
+Patches shape as tensor: torch.Size([4915, 3, 112, 112])
+
+Processing sample INT1
+Patches shape after loading: (1084, 3, 112, 112)
+Patches shape as tensor: torch.Size([1084, 3, 112, 112])
+
+Processing sample INT20
+Patches shape after loading: (4860, 3, 112, 112)
+Patches shape as tensor: torch.Size([4860, 3, 112, 112])
+Training started at: 2025-08-07 10:23:53
+TRAIN Start GPU 0 Memory:
+  Allocated: 0.82 GB
+  Reserved:  0.83 GB
+  Max Allocated: 4.78 GB
+  Max Reserved:  7.29 GB
+Epoch 0 started at: 10:23:53
+TRAIN Epoch 0 Start GPU 0 Memory:
+  Allocated: 0.82 GB
+  Reserved:  0.83 GB
+  Max Allocated: 0.82 GB
+  Max Reserved:  0.83 GB
+Input patches shape: torch.Size([1, 7233, 37632])
+TRAIN Batch 0 GPU 0 Memory:
+  Allocated: 2.33 GB
+  Reserved:  51.16 GB
+  Max Allocated: 47.92 GB
+  Max Reserved:  51.16 GB
+Input patches shape: torch.Size([1, 498, 37632])
+Input patches shape: torch.Size([1, 4390, 37632])
+Input patches shape: torch.Size([1, 3620, 37632])
+Input patches shape: torch.Size([1, 3743, 37632])
+Input patches shape: torch.Size([1, 1607, 37632])
+Input patches shape: torch.Size([1, 301, 37632])
+Input patches shape: torch.Size([1, 3708, 37632])
+Input patches shape: torch.Size([1, 3316, 37632])
+Input patches shape: torch.Size([1, 712, 37632])
+Input patches shape: torch.Size([1, 441, 37632])
+TRAIN Batch 10 GPU 0 Memory:
+  Allocated: 2.12 GB
+  Reserved:  20.74 GB
+  Max Allocated: 47.92 GB
+  Max Reserved:  51.16 GB
+Input patches shape: torch.Size([1, 1433, 37632])
+Input patches shape: torch.Size([1, 316, 37632])
+Input patches shape: torch.Size([1, 4110, 37632])
+Input patches shape: torch.Size([1, 2551, 37632])
+Input patches shape: torch.Size([1, 334, 37632])
+Input patches shape: torch.Size([1, 598, 37632])
+Input patches shape: torch.Size([1, 1987, 37632])
+Input patches shape: torch.Size([1, 3320, 37632])
+Input patches shape: torch.Size([1, 4297, 37632])
+Input patches shape: torch.Size([1, 2462, 37632])
+TRAIN Batch 20 GPU 0 Memory:
+  Allocated: 2.42 GB
+  Reserved:  21.75 GB
+  Max Allocated: 47.92 GB
+  Max Reserved:  51.16 GB
+Input patches shape: torch.Size([1, 1122, 37632])
+Input patches shape: torch.Size([1, 387, 37632])
+Input patches shape: torch.Size([1, 176, 37632])
+Input patches shape: torch.Size([1, 264, 37632])
+Input patches shape: torch.Size([1, 369, 37632])
+Input patches shape: torch.Size([1, 3639, 37632])
+Input patches shape: torch.Size([1, 328, 37632])
+Input patches shape: torch.Size([1, 297, 37632])
+Input patches shape: torch.Size([1, 1186, 37632])
+Input patches shape: torch.Size([1, 6352, 37632])
+TRAIN Batch 30 GPU 0 Memory:
+  Allocated: 3.01 GB
+  Reserved:  50.74 GB
+  Max Allocated: 47.92 GB
+  Max Reserved:  51.16 GB
+Input patches shape: torch.Size([1, 4511, 37632])
+Input patches shape: torch.Size([1, 651, 37632])
+Input patches shape: torch.Size([1, 3043, 37632])
+Input patches shape: torch.Size([1, 2263, 37632])
+Input patches shape: torch.Size([1, 59, 37632])
+Input patches shape: torch.Size([1, 4359, 37632])
+Input patches shape: torch.Size([1, 10005, 37632])
+OOM Error #1 detected: CUDA out of memory. Tried to allocate 5.97 GiB. GPU 0 has a total capacity of 79.25 GiB of which 4.34 GiB is free. Including non-PyTorch memory, this process has 74.90 GiB memory in use. Of the allocated memory 72.52 GiB is allocated by PyTorch, and 1.42 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Cleared CUDA cache after OOM
+Post-OOM Memory - Allocated: 72.45 GB, Reserved: 73.95 GB
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/train.py", line 107, in <module>
+[rank0]:     trainer, best_model_path = train(genes='3CA-copy')
+[rank0]:                                ~~~~~^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/train.py", line 83, in train
+[rank0]:     trainer.fit(model, train_loader, val_loader)
+[rank0]:     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 561, in fit
+[rank0]:     call._call_and_handle_interrupt(
+[rank0]:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[rank0]:         self, self._fit_impl, model, train_dataloaders, val_dataloaders, datamodule, ckpt_path
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:     )
+[rank0]:     ^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+[rank0]:     return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/launchers/subprocess_script.py", line 105, in launch
+[rank0]:     return function(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 599, in _fit_impl
+[rank0]:     self._run(model, ckpt_path=ckpt_path)
+[rank0]:     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 1012, in _run
+[rank0]:     results = self._run_stage()
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/trainer.py", line 1056, in _run_stage
+[rank0]:     self.fit_loop.run()
+[rank0]:     ~~~~~~~~~~~~~~~~~^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/fit_loop.py", line 216, in run
+[rank0]:     self.advance()
+[rank0]:     ~~~~~~~~~~~~^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/fit_loop.py", line 455, in advance
+[rank0]:     self.epoch_loop.run(self._data_fetcher)
+[rank0]:     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 150, in run
+[rank0]:     self.advance(data_fetcher)
+[rank0]:     ~~~~~~~~~~~~^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 320, in advance
+[rank0]:     batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 185, in run
+[rank0]:     closure()
+[rank0]:     ~~~~~~~^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 146, in __call__
+[rank0]:     self._result = self.closure(*args, **kwargs)
+[rank0]:                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 131, in closure
+[rank0]:     step_output = self._step_fn()
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/loops/optimization/automatic.py", line 319, in _training_step
+[rank0]:     training_step_output = call._call_strategy_hook(trainer, "training_step", *kwargs.values())
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/trainer/call.py", line 328, in _call_strategy_hook
+[rank0]:     output = fn(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/strategy.py", line 390, in training_step
+[rank0]:     return self._forward_redirection(self.model, self.lightning_module, "training_step", *args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/strategy.py", line 641, in __call__
+[rank0]:     wrapper_output = wrapper_module(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/parallel/distributed.py", line 1637, in forward
+[rank0]:     else self._run_ddp_forward(*inputs, **kwargs)
+[rank0]:          ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/parallel/distributed.py", line 1464, in _run_ddp_forward
+[rank0]:     return self.module(*inputs, **kwargs)  # type: ignore[index]
+[rank0]:            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/pytorch_lightning/strategies/strategy.py", line 634, in wrapped_forward
+[rank0]:     out = method(*_args, **_kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/vis_model.py", line 172, in training_step
+[rank0]:     pred = self(patch, center)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/vis_model.py", line 166, in forward
+[rank0]:     h = self.vit(x)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/transformer.py", line 90, in forward
+[rank0]:     x = self.transformer(x)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/transformer.py", line 77, in forward
+[rank0]:     x = attn(x) + x
+[rank0]:         ~~~~^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/transformer.py", line 19, in forward
+[rank0]:     return self.fn(self.norm(x), **kwargs)
+[rank0]:            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/work/bose_lab/Jamie/Summer/models/HisToGene-Fork/transformer.py", line 59, in forward
+[rank0]:     attn = self.attend(dots)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/modules/activation.py", line 1672, in forward
+[rank0]:     return F.softmax(input, self.dim, _stacklevel=5)
+[rank0]:            ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jamie.macdonald2/software/miniforge3/envs/histogene-env/lib/python3.13/site-packages/torch/nn/functional.py", line 2140, in softmax
+[rank0]:     ret = input.softmax(dim)
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.97 GiB. GPU 0 has a total capacity of 79.25 GiB of which 4.34 GiB is free. Including non-PyTorch memory, this process has 74.90 GiB memory in use. Of the allocated memory 72.52 GiB is allocated by PyTorch, and 1.42 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,659 @@
+Using default `ModelCheckpoint`. Consider installing `litmodels` package to enable `LitModelCheckpoint` for automatic upload to the Lightning model registry.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name            | Type       | Params | Mode 
+-------------------------------------------------------
+0 | patch_embedding | Linear     | 38.5 M | train
+1 | x_embed         | Embedding  | 65.5 K | train
+2 | y_embed         | Embedding  | 65.5 K | train
+3 | vit             | ViT        | 67.2 M | train
+4 | gene_head       | Sequential | 3.1 M  | train
+-------------------------------------------------------
+108 M     Trainable params
+0         Non-trainable params
+108 M     Total params
+435.581   Total estimated model params size (MB)
+155       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes/train
+Found 434 samples.
+Loading HEST1K data...
+Looking for HEST1K data in: ../../data/HERST_preprocess/3CA_genes/test
+Found 120 samples.
+Loading HEST1K data...
+Training: |          | 0/? [00:00<?, ?it/s]Training:   0%|          | 0/434 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/434 [00:00<?, ?it/s] 
+Processing sample MEND14
+Patches shape after loading: (161, 3, 112, 112)
+Patches shape as tensor: torch.Size([161, 3, 112, 112])
+Input patches shape: torch.Size([1, 161, 37632])
+Epoch 0:   0%|          | 1/434 [00:02<15:20,  0.47it/s]Epoch 0:   0%|          | 1/434 [00:02<15:21,  0.47it/s, v_num=9]
+Processing sample NCBI1
+Patches shape after loading: (1593, 3, 112, 112)
+Patches shape as tensor: torch.Size([1593, 3, 112, 112])
+Input patches shape: torch.Size([1, 1593, 37632])
+Epoch 0:   0%|          | 2/434 [00:09<33:41,  0.21it/s, v_num=9]Epoch 0:   0%|          | 2/434 [00:09<33:41,  0.21it/s, v_num=9]
+Processing sample NCBI630
+Patches shape after loading: (2961, 3, 112, 112)
+Patches shape as tensor: torch.Size([2961, 3, 112, 112])
+Input patches shape: torch.Size([1, 2961, 37632])
+Epoch 0:   1%|          | 3/434 [00:18<44:36,  0.16it/s, v_num=9]Epoch 0:   1%|          | 3/434 [00:18<44:36,  0.16it/s, v_num=9]
+Processing sample MEND54
+Patches shape after loading: (469, 3, 112, 112)
+Patches shape as tensor: torch.Size([469, 3, 112, 112])
+Input patches shape: torch.Size([1, 469, 37632])
+Epoch 0:   1%|          | 4/434 [00:20<37:10,  0.19it/s, v_num=9]Epoch 0:   1%|          | 4/434 [00:20<37:10,  0.19it/s, v_num=9]
+Processing sample MISC54
+Patches shape after loading: (668, 3, 112, 112)
+Patches shape as tensor: torch.Size([668, 3, 112, 112])
+Input patches shape: torch.Size([1, 668, 37632])
+Epoch 0:   1%|          | 5/434 [00:23<34:06,  0.21it/s, v_num=9]Epoch 0:   1%|          | 5/434 [00:23<34:06,  0.21it/s, v_num=9]
+Processing sample MEND35
+Patches shape after loading: (3320, 3, 112, 112)
+Patches shape as tensor: torch.Size([3320, 3, 112, 112])
+Input patches shape: torch.Size([1, 3320, 37632])
+Epoch 0:   1%|▏         | 6/434 [00:35<42:27,  0.17it/s, v_num=9]Epoch 0:   1%|▏         | 6/434 [00:35<42:27,  0.17it/s, v_num=9]
+Processing sample NCBI473
+Patches shape after loading: (744, 3, 112, 112)
+Patches shape as tensor: torch.Size([744, 3, 112, 112])
+Input patches shape: torch.Size([1, 744, 37632])
+Epoch 0:   2%|▏         | 7/434 [00:39<40:07,  0.18it/s, v_num=9]Epoch 0:   2%|▏         | 7/434 [00:39<40:07,  0.18it/s, v_num=9]
+Processing sample TENX65
+Patches shape after loading: (4674, 3, 112, 112)
+Patches shape as tensor: torch.Size([4674, 3, 112, 112])
+Input patches shape: torch.Size([1, 4674, 37632])
+Epoch 0:   2%|▏         | 8/434 [00:53<47:28,  0.15it/s, v_num=9]Epoch 0:   2%|▏         | 8/434 [00:53<47:28,  0.15it/s, v_num=9]
+Processing sample SPA53
+Patches shape after loading: (402, 3, 112, 112)
+Patches shape as tensor: torch.Size([402, 3, 112, 112])
+Input patches shape: torch.Size([1, 402, 37632])
+Epoch 0:   2%|▏         | 9/434 [00:56<44:16,  0.16it/s, v_num=9]Epoch 0:   2%|▏         | 9/434 [00:56<44:16,  0.16it/s, v_num=9]
+Processing sample NCBI813
+Patches shape after loading: (2027, 3, 112, 112)
+Patches shape as tensor: torch.Size([2027, 3, 112, 112])
+Input patches shape: torch.Size([1, 2027, 37632])
+Epoch 0:   2%|▏         | 10/434 [01:01<43:16,  0.16it/s, v_num=9]Epoch 0:   2%|▏         | 10/434 [01:01<43:16,  0.16it/s, v_num=9]
+Processing sample SPA38
+Patches shape after loading: (178, 3, 112, 112)
+Patches shape as tensor: torch.Size([178, 3, 112, 112])
+Input patches shape: torch.Size([1, 178, 37632])
+Epoch 0:   3%|▎         | 11/434 [01:02<39:59,  0.18it/s, v_num=9]Epoch 0:   3%|▎         | 11/434 [01:02<39:59,  0.18it/s, v_num=9]
+Processing sample TENX68
+Patches shape after loading: (1657, 3, 112, 112)
+Patches shape as tensor: torch.Size([1657, 3, 112, 112])
+Input patches shape: torch.Size([1, 1657, 37632])
+Epoch 0:   3%|▎         | 12/434 [01:07<39:37,  0.18it/s, v_num=9]Epoch 0:   3%|▎         | 12/434 [01:07<39:37,  0.18it/s, v_num=9]
+Processing sample TENX28
+Patches shape after loading: (3138, 3, 112, 112)
+Patches shape as tensor: torch.Size([3138, 3, 112, 112])
+Input patches shape: torch.Size([1, 3138, 37632])
+Epoch 0:   3%|▎         | 13/434 [01:17<41:34,  0.17it/s, v_num=9]Epoch 0:   3%|▎         | 13/434 [01:17<41:34,  0.17it/s, v_num=9]
+Processing sample SPA101
+Patches shape after loading: (691, 3, 112, 112)
+Patches shape as tensor: torch.Size([691, 3, 112, 112])
+Input patches shape: torch.Size([1, 691, 37632])
+Epoch 0:   3%|▎         | 14/434 [01:21<40:30,  0.17it/s, v_num=9]Epoch 0:   3%|▎         | 14/434 [01:21<40:30,  0.17it/s, v_num=9]
+Processing sample MISC52
+Patches shape after loading: (229, 3, 112, 112)
+Patches shape as tensor: torch.Size([229, 3, 112, 112])
+Input patches shape: torch.Size([1, 229, 37632])
+Epoch 0:   3%|▎         | 15/434 [01:22<38:27,  0.18it/s, v_num=9]Epoch 0:   3%|▎         | 15/434 [01:22<38:27,  0.18it/s, v_num=9]
+Processing sample MEND68
+Patches shape after loading: (1490, 3, 112, 112)
+Patches shape as tensor: torch.Size([1490, 3, 112, 112])
+Input patches shape: torch.Size([1, 1490, 37632])
+Epoch 0:   4%|▎         | 16/434 [01:27<38:09,  0.18it/s, v_num=9]Epoch 0:   4%|▎         | 16/434 [01:27<38:09,  0.18it/s, v_num=9]
+Processing sample NCBI637
+Patches shape after loading: (2705, 3, 112, 112)
+Patches shape as tensor: torch.Size([2705, 3, 112, 112])
+Input patches shape: torch.Size([1, 2705, 37632])
+Epoch 0:   4%|▍         | 17/434 [01:36<39:23,  0.18it/s, v_num=9]Epoch 0:   4%|▍         | 17/434 [01:36<39:23,  0.18it/s, v_num=9]
+Processing sample NCBI855
+Patches shape after loading: (1432, 3, 112, 112)
+Patches shape as tensor: torch.Size([1432, 3, 112, 112])
+Input patches shape: torch.Size([1, 1432, 37632])
+Epoch 0:   4%|▍         | 18/434 [01:43<39:44,  0.17it/s, v_num=9]Epoch 0:   4%|▍         | 18/434 [01:43<39:44,  0.17it/s, v_num=9]
+Processing sample NCBI482
+Patches shape after loading: (625, 3, 112, 112)
+Patches shape as tensor: torch.Size([625, 3, 112, 112])
+Input patches shape: torch.Size([1, 625, 37632])
+Epoch 0:   4%|▍         | 19/434 [01:45<38:22,  0.18it/s, v_num=9]Epoch 0:   4%|▍         | 19/434 [01:45<38:22,  0.18it/s, v_num=9]
+Processing sample SPA1
+Patches shape after loading: (264, 3, 112, 112)
+Patches shape as tensor: torch.Size([264, 3, 112, 112])
+Input patches shape: torch.Size([1, 264, 37632])
+Epoch 0:   5%|▍         | 20/434 [01:47<37:05,  0.19it/s, v_num=9]Epoch 0:   5%|▍         | 20/434 [01:47<37:05,  0.19it/s, v_num=9]
+Processing sample SPA45
+Patches shape after loading: (55, 3, 112, 112)
+Patches shape as tensor: torch.Size([55, 3, 112, 112])
+Input patches shape: torch.Size([1, 55, 37632])
+Epoch 0:   5%|▍         | 21/434 [01:48<35:26,  0.19it/s, v_num=9]Epoch 0:   5%|▍         | 21/434 [01:48<35:26,  0.19it/s, v_num=9]
+Processing sample SPA150
+Patches shape after loading: (332, 3, 112, 112)
+Patches shape as tensor: torch.Size([332, 3, 112, 112])
+Input patches shape: torch.Size([1, 332, 37632])
+Epoch 0:   5%|▌         | 22/434 [01:50<34:28,  0.20it/s, v_num=9]Epoch 0:   5%|▌         | 22/434 [01:50<34:28,  0.20it/s, v_num=9]
+Processing sample SPA106
+Patches shape after loading: (428, 3, 112, 112)
+Patches shape as tensor: torch.Size([428, 3, 112, 112])
+Input patches shape: torch.Size([1, 428, 37632])
+Epoch 0:   5%|▌         | 23/434 [01:53<33:47,  0.20it/s, v_num=9]Epoch 0:   5%|▌         | 23/434 [01:53<33:47,  0.20it/s, v_num=9]
+Processing sample MEND147
+Patches shape after loading: (2335, 3, 112, 112)
+Patches shape as tensor: torch.Size([2335, 3, 112, 112])
+Input patches shape: torch.Size([1, 2335, 37632])
+Epoch 0:   6%|▌         | 24/434 [02:01<34:36,  0.20it/s, v_num=9]Epoch 0:   6%|▌         | 24/434 [02:01<34:36,  0.20it/s, v_num=9]
+Processing sample MEND17
+Patches shape after loading: (261, 3, 112, 112)
+Patches shape as tensor: torch.Size([261, 3, 112, 112])
+Input patches shape: torch.Size([1, 261, 37632])
+Epoch 0:   6%|▌         | 25/434 [02:03<33:40,  0.20it/s, v_num=9]Epoch 0:   6%|▌         | 25/434 [02:03<33:40,  0.20it/s, v_num=9]
+Processing sample TENX111
+Patches shape after loading: (6643, 3, 112, 112)
+Patches shape as tensor: torch.Size([6643, 3, 112, 112])
+Input patches shape: torch.Size([1, 6643, 37632])
+Epoch 0:   6%|▌         | 26/434 [02:17<36:03,  0.19it/s, v_num=9]Epoch 0:   6%|▌         | 26/434 [02:17<36:03,  0.19it/s, v_num=9]
+Processing sample MISC40
+Patches shape after loading: (4116, 3, 112, 112)
+Patches shape as tensor: torch.Size([4116, 3, 112, 112])
+Input patches shape: torch.Size([1, 4116, 37632])
+Epoch 0:   6%|▌         | 27/434 [02:29<37:29,  0.18it/s, v_num=9]Epoch 0:   6%|▌         | 27/434 [02:29<37:29,  0.18it/s, v_num=9]
+Processing sample MISC6
+Patches shape after loading: (4110, 3, 112, 112)
+Patches shape as tensor: torch.Size([4110, 3, 112, 112])
+Input patches shape: torch.Size([1, 4110, 37632])
+Epoch 0:   6%|▋         | 28/434 [02:41<38:58,  0.17it/s, v_num=9]Epoch 0:   6%|▋         | 28/434 [02:41<38:58,  0.17it/s, v_num=9]
+Processing sample MEND96
+Patches shape after loading: (3360, 3, 112, 112)
+Patches shape as tensor: torch.Size([3360, 3, 112, 112])
+Input patches shape: torch.Size([1, 3360, 37632])
+Epoch 0:   7%|▋         | 29/434 [02:51<40:00,  0.17it/s, v_num=9]Epoch 0:   7%|▋         | 29/434 [02:51<40:00,  0.17it/s, v_num=9]
+Processing sample NCBI826
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:   7%|▋         | 30/434 [03:07<41:58,  0.16it/s, v_num=9]Epoch 0:   7%|▋         | 30/434 [03:07<41:58,  0.16it/s, v_num=9]
+Processing sample INT6
+Patches shape after loading: (1678, 3, 112, 112)
+Patches shape as tensor: torch.Size([1678, 3, 112, 112])
+Input patches shape: torch.Size([1, 1678, 37632])
+Epoch 0:   7%|▋         | 31/434 [03:13<41:51,  0.16it/s, v_num=9]Epoch 0:   7%|▋         | 31/434 [03:13<41:51,  0.16it/s, v_num=9]
+Processing sample MISC46
+Patches shape after loading: (4511, 3, 112, 112)
+Patches shape as tensor: torch.Size([4511, 3, 112, 112])
+Input patches shape: torch.Size([1, 4511, 37632])
+Epoch 0:   7%|▋         | 32/434 [03:26<43:19,  0.15it/s, v_num=9]Epoch 0:   7%|▋         | 32/434 [03:26<43:19,  0.15it/s, v_num=9]
+Processing sample TENX114
+Patches shape after loading: (6006, 3, 112, 112)
+Patches shape as tensor: torch.Size([6006, 3, 112, 112])
+Input patches shape: torch.Size([1, 6006, 37632])
+Epoch 0:   8%|▊         | 33/434 [03:40<44:36,  0.15it/s, v_num=9]Epoch 0:   8%|▊         | 33/434 [03:40<44:36,  0.15it/s, v_num=9]
+Processing sample TENX152
+Patches shape after loading: (4269, 3, 112, 112)
+Patches shape as tensor: torch.Size([4269, 3, 112, 112])
+Input patches shape: torch.Size([1, 4269, 37632])
+Epoch 0:   8%|▊         | 34/434 [03:52<45:40,  0.15it/s, v_num=9]Epoch 0:   8%|▊         | 34/434 [03:52<45:40,  0.15it/s, v_num=9]
+Processing sample SPA104
+Patches shape after loading: (587, 3, 112, 112)
+Patches shape as tensor: torch.Size([587, 3, 112, 112])
+Input patches shape: torch.Size([1, 587, 37632])
+Epoch 0:   8%|▊         | 35/434 [03:56<44:52,  0.15it/s, v_num=9]Epoch 0:   8%|▊         | 35/434 [03:56<44:52,  0.15it/s, v_num=9]
+Processing sample TENX72
+Patches shape after loading: (6195, 3, 112, 112)
+Patches shape as tensor: torch.Size([6195, 3, 112, 112])
+Input patches shape: torch.Size([1, 6195, 37632])
+Epoch 0:   8%|▊         | 36/434 [04:13<46:46,  0.14it/s, v_num=9]Epoch 0:   8%|▊         | 36/434 [04:13<46:46,  0.14it/s, v_num=9]
+Processing sample INT1
+Patches shape after loading: (1084, 3, 112, 112)
+Patches shape as tensor: torch.Size([1084, 3, 112, 112])
+Input patches shape: torch.Size([1, 1084, 37632])
+Epoch 0:   9%|▊         | 37/434 [04:17<46:01,  0.14it/s, v_num=9]Epoch 0:   9%|▊         | 37/434 [04:17<46:01,  0.14it/s, v_num=9]
+Processing sample SPA54
+Patches shape after loading: (601, 3, 112, 112)
+Patches shape as tensor: torch.Size([601, 3, 112, 112])
+Input patches shape: torch.Size([1, 601, 37632])
+Epoch 0:   9%|▉         | 38/434 [04:20<45:17,  0.15it/s, v_num=9]Epoch 0:   9%|▉         | 38/434 [04:20<45:17,  0.15it/s, v_num=9]
+Processing sample SPA103
+Patches shape after loading: (572, 3, 112, 112)
+Patches shape as tensor: torch.Size([572, 3, 112, 112])
+Input patches shape: torch.Size([1, 572, 37632])
+Epoch 0:   9%|▉         | 39/434 [04:24<44:36,  0.15it/s, v_num=9]Epoch 0:   9%|▉         | 39/434 [04:24<44:36,  0.15it/s, v_num=9]
+Processing sample SPA60
+Patches shape after loading: (331, 3, 112, 112)
+Patches shape as tensor: torch.Size([331, 3, 112, 112])
+Input patches shape: torch.Size([1, 331, 37632])
+Epoch 0:   9%|▉         | 40/434 [04:26<43:45,  0.15it/s, v_num=9]Epoch 0:   9%|▉         | 40/434 [04:26<43:45,  0.15it/s, v_num=9]
+Processing sample NCBI488
+Patches shape after loading: (1021, 3, 112, 112)
+Patches shape as tensor: torch.Size([1021, 3, 112, 112])
+Input patches shape: torch.Size([1, 1021, 37632])
+Epoch 0:   9%|▉         | 41/434 [04:30<43:11,  0.15it/s, v_num=9]Epoch 0:   9%|▉         | 41/434 [04:30<43:11,  0.15it/s, v_num=9]
+Processing sample SPA63
+Patches shape after loading: (518, 3, 112, 112)
+Patches shape as tensor: torch.Size([518, 3, 112, 112])
+Input patches shape: torch.Size([1, 518, 37632])
+Epoch 0:  10%|▉         | 42/434 [04:33<42:29,  0.15it/s, v_num=9]Epoch 0:  10%|▉         | 42/434 [04:33<42:29,  0.15it/s, v_num=9]
+Processing sample MISC38
+Patches shape after loading: (1727, 3, 112, 112)
+Patches shape as tensor: torch.Size([1727, 3, 112, 112])
+Input patches shape: torch.Size([1, 1727, 37632])
+Epoch 0:  10%|▉         | 43/434 [04:39<42:18,  0.15it/s, v_num=9]Epoch 0:  10%|▉         | 43/434 [04:39<42:18,  0.15it/s, v_num=9]
+Processing sample SPA86
+Patches shape after loading: (434, 3, 112, 112)
+Patches shape as tensor: torch.Size([434, 3, 112, 112])
+Input patches shape: torch.Size([1, 434, 37632])
+Epoch 0:  10%|█         | 44/434 [04:41<41:36,  0.16it/s, v_num=9]Epoch 0:  10%|█         | 44/434 [04:41<41:36,  0.16it/s, v_num=9]
+Processing sample SPA135
+Patches shape after loading: (303, 3, 112, 112)
+Patches shape as tensor: torch.Size([303, 3, 112, 112])
+Input patches shape: torch.Size([1, 303, 37632])
+Epoch 0:  10%|█         | 45/434 [04:43<40:52,  0.16it/s, v_num=9]Epoch 0:  10%|█         | 45/434 [04:43<40:52,  0.16it/s, v_num=9]
+Processing sample MEND3
+Patches shape after loading: (161, 3, 112, 112)
+Patches shape as tensor: torch.Size([161, 3, 112, 112])
+Input patches shape: torch.Size([1, 161, 37632])
+Epoch 0:  11%|█         | 46/434 [04:45<40:06,  0.16it/s, v_num=9]Epoch 0:  11%|█         | 46/434 [04:45<40:06,  0.16it/s, v_num=9]
+Processing sample NCBI600
+Patches shape after loading: (832, 3, 112, 112)
+Patches shape as tensor: torch.Size([832, 3, 112, 112])
+Input patches shape: torch.Size([1, 832, 37632])
+Epoch 0:  11%|█         | 47/434 [04:48<39:38,  0.16it/s, v_num=9]Epoch 0:  11%|█         | 47/434 [04:48<39:38,  0.16it/s, v_num=9]
+Processing sample NCBI472
+Patches shape after loading: (1122, 3, 112, 112)
+Patches shape as tensor: torch.Size([1122, 3, 112, 112])
+Input patches shape: torch.Size([1, 1122, 37632])
+Epoch 0:  11%|█         | 48/434 [04:53<39:17,  0.16it/s, v_num=9]Epoch 0:  11%|█         | 48/434 [04:53<39:17,  0.16it/s, v_num=9]
+Processing sample SPA100
+Patches shape after loading: (695, 3, 112, 112)
+Patches shape as tensor: torch.Size([695, 3, 112, 112])
+Input patches shape: torch.Size([1, 695, 37632])
+Epoch 0:  11%|█▏        | 49/434 [04:56<38:49,  0.17it/s, v_num=9]Epoch 0:  11%|█▏        | 49/434 [04:56<38:49,  0.17it/s, v_num=9]
+Processing sample SPA120
+Patches shape after loading: (603, 3, 112, 112)
+Patches shape as tensor: torch.Size([603, 3, 112, 112])
+Input patches shape: torch.Size([1, 603, 37632])
+Epoch 0:  12%|█▏        | 50/434 [05:00<38:24,  0.17it/s, v_num=9]Epoch 0:  12%|█▏        | 50/434 [05:00<38:24,  0.17it/s, v_num=9]
+Processing sample MEND11
+Patches shape after loading: (216, 3, 112, 112)
+Patches shape as tensor: torch.Size([216, 3, 112, 112])
+Input patches shape: torch.Size([1, 216, 37632])
+Epoch 0:  12%|█▏        | 51/434 [05:02<37:49,  0.17it/s, v_num=9]Epoch 0:  12%|█▏        | 51/434 [05:02<37:49,  0.17it/s, v_num=9]
+Processing sample ZEN46
+Patches shape after loading: (1803, 3, 112, 112)
+Patches shape as tensor: torch.Size([1803, 3, 112, 112])
+Input patches shape: torch.Size([1, 1803, 37632])
+Epoch 0:  12%|█▏        | 52/434 [05:07<37:40,  0.17it/s, v_num=9]Epoch 0:  12%|█▏        | 52/434 [05:07<37:40,  0.17it/s, v_num=9]
+Processing sample TENX156
+Patches shape after loading: (2179, 3, 112, 112)
+Patches shape as tensor: torch.Size([2179, 3, 112, 112])
+Input patches shape: torch.Size([1, 2179, 37632])
+Epoch 0:  12%|█▏        | 53/434 [05:14<37:40,  0.17it/s, v_num=9]Epoch 0:  12%|█▏        | 53/434 [05:14<37:40,  0.17it/s, v_num=9]
+Processing sample NCBI708
+Patches shape after loading: (1322, 3, 112, 112)
+Patches shape as tensor: torch.Size([1322, 3, 112, 112])
+Input patches shape: torch.Size([1, 1322, 37632])
+Epoch 0:  12%|█▏        | 54/434 [05:18<37:24,  0.17it/s, v_num=9]Epoch 0:  12%|█▏        | 54/434 [05:18<37:24,  0.17it/s, v_num=9]
+Processing sample INT28
+Patches shape after loading: (3990, 3, 112, 112)
+Patches shape as tensor: torch.Size([3990, 3, 112, 112])
+Input patches shape: torch.Size([1, 3990, 37632])
+Epoch 0:  13%|█▎        | 55/434 [05:31<38:03,  0.17it/s, v_num=9]Epoch 0:  13%|█▎        | 55/434 [05:31<38:03,  0.17it/s, v_num=9]
+Processing sample SPA56
+Patches shape after loading: (597, 3, 112, 112)
+Patches shape as tensor: torch.Size([597, 3, 112, 112])
+Input patches shape: torch.Size([1, 597, 37632])
+Epoch 0:  13%|█▎        | 56/434 [05:34<37:39,  0.17it/s, v_num=9]Epoch 0:  13%|█▎        | 56/434 [05:34<37:39,  0.17it/s, v_num=9]
+Processing sample NCBI493
+Patches shape after loading: (566, 3, 112, 112)
+Patches shape as tensor: torch.Size([566, 3, 112, 112])
+Input patches shape: torch.Size([1, 566, 37632])
+Epoch 0:  13%|█▎        | 57/434 [05:36<37:08,  0.17it/s, v_num=9]Epoch 0:  13%|█▎        | 57/434 [05:36<37:08,  0.17it/s, v_num=9]
+Processing sample MEND52
+Patches shape after loading: (758, 3, 112, 112)
+Patches shape as tensor: torch.Size([758, 3, 112, 112])
+Input patches shape: torch.Size([1, 758, 37632])
+Epoch 0:  13%|█▎        | 58/434 [05:39<36:38,  0.17it/s, v_num=9]Epoch 0:  13%|█▎        | 58/434 [05:39<36:38,  0.17it/s, v_num=9]
+Processing sample MISC26
+Patches shape after loading: (2524, 3, 112, 112)
+Patches shape as tensor: torch.Size([2524, 3, 112, 112])
+Input patches shape: torch.Size([1, 2524, 37632])
+Epoch 0:  14%|█▎        | 59/434 [05:46<36:43,  0.17it/s, v_num=9]Epoch 0:  14%|█▎        | 59/434 [05:46<36:43,  0.17it/s, v_num=9]
+Processing sample SPA80
+Patches shape after loading: (368, 3, 112, 112)
+Patches shape as tensor: torch.Size([368, 3, 112, 112])
+Input patches shape: torch.Size([1, 368, 37632])
+Epoch 0:  14%|█▍        | 60/434 [05:49<36:19,  0.17it/s, v_num=9]Epoch 0:  14%|█▍        | 60/434 [05:49<36:19,  0.17it/s, v_num=9]
+Processing sample INT11
+Patches shape after loading: (1439, 3, 112, 112)
+Patches shape as tensor: torch.Size([1439, 3, 112, 112])
+Input patches shape: torch.Size([1, 1439, 37632])
+Epoch 0:  14%|█▍        | 61/434 [05:55<36:10,  0.17it/s, v_num=9]Epoch 0:  14%|█▍        | 61/434 [05:55<36:10,  0.17it/s, v_num=9]
+Processing sample INT24
+Patches shape after loading: (4510, 3, 112, 112)
+Patches shape as tensor: torch.Size([4510, 3, 112, 112])
+Input patches shape: torch.Size([1, 4510, 37632])
+Epoch 0:  14%|█▍        | 62/434 [06:08<36:50,  0.17it/s, v_num=9]Epoch 0:  14%|█▍        | 62/434 [06:08<36:50,  0.17it/s, v_num=9]
+Processing sample NCBI713
+Patches shape after loading: (3627, 3, 112, 112)
+Patches shape as tensor: torch.Size([3627, 3, 112, 112])
+Input patches shape: torch.Size([1, 3627, 37632])
+Epoch 0:  15%|█▍        | 63/434 [06:19<37:13,  0.17it/s, v_num=9]Epoch 0:  15%|█▍        | 63/434 [06:19<37:13,  0.17it/s, v_num=9]
+Processing sample MEND40
+Patches shape after loading: (2793, 3, 112, 112)
+Patches shape as tensor: torch.Size([2793, 3, 112, 112])
+Input patches shape: torch.Size([1, 2793, 37632])
+Epoch 0:  15%|█▍        | 64/434 [06:28<37:26,  0.16it/s, v_num=9]Epoch 0:  15%|█▍        | 64/434 [06:28<37:26,  0.16it/s, v_num=9]
+Processing sample NCBI468
+Patches shape after loading: (1964, 3, 112, 112)
+Patches shape as tensor: torch.Size([1964, 3, 112, 112])
+Input patches shape: torch.Size([1, 1964, 37632])
+Epoch 0:  15%|█▍        | 65/434 [06:34<37:21,  0.16it/s, v_num=9]Epoch 0:  15%|█▍        | 65/434 [06:34<37:21,  0.16it/s, v_num=9]
+Processing sample MEND151
+Patches shape after loading: (2600, 3, 112, 112)
+Patches shape as tensor: torch.Size([2600, 3, 112, 112])
+Input patches shape: torch.Size([1, 2600, 37632])
+Epoch 0:  15%|█▌        | 66/434 [06:42<37:26,  0.16it/s, v_num=9]Epoch 0:  15%|█▌        | 66/434 [06:42<37:26,  0.16it/s, v_num=9]
+Processing sample SPA46
+Patches shape after loading: (69, 3, 112, 112)
+Patches shape as tensor: torch.Size([69, 3, 112, 112])
+Input patches shape: torch.Size([1, 69, 37632])
+Epoch 0:  15%|█▌        | 67/434 [06:43<36:52,  0.17it/s, v_num=9]Epoch 0:  15%|█▌        | 67/434 [06:43<36:52,  0.17it/s, v_num=9]
+Processing sample MISC24
+Patches shape after loading: (875, 3, 112, 112)
+Patches shape as tensor: torch.Size([875, 3, 112, 112])
+Input patches shape: torch.Size([1, 875, 37632])
+Epoch 0:  16%|█▌        | 68/434 [06:47<36:30,  0.17it/s, v_num=9]Epoch 0:  16%|█▌        | 68/434 [06:47<36:30,  0.17it/s, v_num=9]
+Processing sample SPA34
+Patches shape after loading: (242, 3, 112, 112)
+Patches shape as tensor: torch.Size([242, 3, 112, 112])
+Input patches shape: torch.Size([1, 242, 37632])
+Epoch 0:  16%|█▌        | 69/434 [06:48<36:03,  0.17it/s, v_num=9]Epoch 0:  16%|█▌        | 69/434 [06:48<36:03,  0.17it/s, v_num=9]
+Processing sample NCBI673
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:  16%|█▌        | 70/434 [07:02<36:36,  0.17it/s, v_num=9]Epoch 0:  16%|█▌        | 70/434 [07:02<36:36,  0.17it/s, v_num=9]
+Processing sample NCBI498
+Patches shape after loading: (698, 3, 112, 112)
+Patches shape as tensor: torch.Size([698, 3, 112, 112])
+Input patches shape: torch.Size([1, 698, 37632])
+Epoch 0:  16%|█▋        | 71/434 [07:05<36:14,  0.17it/s, v_num=9]Epoch 0:  16%|█▋        | 71/434 [07:05<36:14,  0.17it/s, v_num=9]
+Processing sample NCBI701
+Patches shape after loading: (904, 3, 112, 112)
+Patches shape as tensor: torch.Size([904, 3, 112, 112])
+Input patches shape: torch.Size([1, 904, 37632])
+Epoch 0:  17%|█▋        | 72/434 [07:08<35:53,  0.17it/s, v_num=9]Epoch 0:  17%|█▋        | 72/434 [07:08<35:53,  0.17it/s, v_num=9]
+Processing sample SPA129
+Patches shape after loading: (572, 3, 112, 112)
+Patches shape as tensor: torch.Size([572, 3, 112, 112])
+Input patches shape: torch.Size([1, 572, 37632])
+Epoch 0:  17%|█▋        | 73/434 [07:11<35:32,  0.17it/s, v_num=9]Epoch 0:  17%|█▋        | 73/434 [07:11<35:32,  0.17it/s, v_num=9]
+Processing sample SPA144
+Patches shape after loading: (289, 3, 112, 112)
+Patches shape as tensor: torch.Size([289, 3, 112, 112])
+Input patches shape: torch.Size([1, 289, 37632])
+Epoch 0:  17%|█▋        | 74/434 [07:13<35:09,  0.17it/s, v_num=9]Epoch 0:  17%|█▋        | 74/434 [07:13<35:09,  0.17it/s, v_num=9]
+Processing sample MEND156
+Patches shape after loading: (3554, 3, 112, 112)
+Patches shape as tensor: torch.Size([3554, 3, 112, 112])
+Input patches shape: torch.Size([1, 3554, 37632])
+Epoch 0:  17%|█▋        | 75/434 [07:24<35:28,  0.17it/s, v_num=9]Epoch 0:  17%|█▋        | 75/434 [07:24<35:28,  0.17it/s, v_num=9]
+Processing sample SPA118
+Patches shape after loading: (256, 3, 112, 112)
+Patches shape as tensor: torch.Size([256, 3, 112, 112])
+Input patches shape: torch.Size([1, 256, 37632])
+Epoch 0:  18%|█▊        | 76/434 [07:26<35:04,  0.17it/s, v_num=9]Epoch 0:  18%|█▊        | 76/434 [07:26<35:04,  0.17it/s, v_num=9]
+Processing sample NCBI867
+Patches shape after loading: (3498, 3, 112, 112)
+Patches shape as tensor: torch.Size([3498, 3, 112, 112])
+Input patches shape: torch.Size([1, 3498, 37632])
+Epoch 0:  18%|█▊        | 77/434 [07:36<35:15,  0.17it/s, v_num=9]Epoch 0:  18%|█▊        | 77/434 [07:36<35:15,  0.17it/s, v_num=9]
+Processing sample NCBI570
+Patches shape after loading: (3216, 3, 112, 112)
+Patches shape as tensor: torch.Size([3216, 3, 112, 112])
+Input patches shape: torch.Size([1, 3216, 37632])
+Epoch 0:  18%|█▊        | 78/434 [07:46<35:27,  0.17it/s, v_num=9]Epoch 0:  18%|█▊        | 78/434 [07:46<35:27,  0.17it/s, v_num=9]
+Processing sample MEND51
+Patches shape after loading: (416, 3, 112, 112)
+Patches shape as tensor: torch.Size([416, 3, 112, 112])
+Input patches shape: torch.Size([1, 416, 37632])
+Epoch 0:  18%|█▊        | 79/434 [07:48<35:03,  0.17it/s, v_num=9]Epoch 0:  18%|█▊        | 79/434 [07:48<35:03,  0.17it/s, v_num=9]
+Processing sample MEND140
+Patches shape after loading: (1935, 3, 112, 112)
+Patches shape as tensor: torch.Size([1935, 3, 112, 112])
+Input patches shape: torch.Size([1, 1935, 37632])
+Epoch 0:  18%|█▊        | 80/434 [07:54<34:58,  0.17it/s, v_num=9]Epoch 0:  18%|█▊        | 80/434 [07:54<34:58,  0.17it/s, v_num=9]
+Processing sample NCBI526
+Patches shape after loading: (818, 3, 112, 112)
+Patches shape as tensor: torch.Size([818, 3, 112, 112])
+Input patches shape: torch.Size([1, 818, 37632])
+Epoch 0:  19%|█▊        | 81/434 [07:57<34:42,  0.17it/s, v_num=9]Epoch 0:  19%|█▊        | 81/434 [07:57<34:42,  0.17it/s, v_num=9]
+Processing sample TENX117
+Patches shape after loading: (1830, 3, 112, 112)
+Patches shape as tensor: torch.Size([1830, 3, 112, 112])
+Input patches shape: torch.Size([1, 1830, 37632])
+Epoch 0:  19%|█▉        | 82/434 [08:02<34:30,  0.17it/s, v_num=9]Epoch 0:  19%|█▉        | 82/434 [08:02<34:30,  0.17it/s, v_num=9]
+Processing sample SPA74
+Patches shape after loading: (506, 3, 112, 112)
+Patches shape as tensor: torch.Size([506, 3, 112, 112])
+Input patches shape: torch.Size([1, 506, 37632])
+Epoch 0:  19%|█▉        | 83/434 [08:05<34:13,  0.17it/s, v_num=9]Epoch 0:  19%|█▉        | 83/434 [08:05<34:13,  0.17it/s, v_num=9]
+Processing sample SPA79
+Patches shape after loading: (362, 3, 112, 112)
+Patches shape as tensor: torch.Size([362, 3, 112, 112])
+Input patches shape: torch.Size([1, 362, 37632])
+Epoch 0:  19%|█▉        | 84/434 [08:07<33:53,  0.17it/s, v_num=9]Epoch 0:  19%|█▉        | 84/434 [08:07<33:53,  0.17it/s, v_num=9]
+Processing sample NCBI565
+Patches shape after loading: (1085, 3, 112, 112)
+Patches shape as tensor: torch.Size([1085, 3, 112, 112])
+Input patches shape: torch.Size([1, 1085, 37632])
+Epoch 0:  20%|█▉        | 85/434 [08:11<33:39,  0.17it/s, v_num=9]Epoch 0:  20%|█▉        | 85/434 [08:11<33:39,  0.17it/s, v_num=9]
+Processing sample SPA147
+Patches shape after loading: (270, 3, 112, 112)
+Patches shape as tensor: torch.Size([270, 3, 112, 112])
+Input patches shape: torch.Size([1, 270, 37632])
+Epoch 0:  20%|█▉        | 86/434 [08:13<33:18,  0.17it/s, v_num=9]Epoch 0:  20%|█▉        | 86/434 [08:13<33:18,  0.17it/s, v_num=9]
+Processing sample SPA44
+Patches shape after loading: (103, 3, 112, 112)
+Patches shape as tensor: torch.Size([103, 3, 112, 112])
+Input patches shape: torch.Size([1, 103, 37632])
+Epoch 0:  20%|██        | 87/434 [08:14<32:53,  0.18it/s, v_num=9]Epoch 0:  20%|██        | 87/434 [08:14<32:53,  0.18it/s, v_num=9]
+Processing sample NCBI592
+Patches shape after loading: (721, 3, 112, 112)
+Patches shape as tensor: torch.Size([721, 3, 112, 112])
+Input patches shape: torch.Size([1, 721, 37632])
+Epoch 0:  20%|██        | 88/434 [08:18<32:40,  0.18it/s, v_num=9]Epoch 0:  20%|██        | 88/434 [08:18<32:40,  0.18it/s, v_num=9]
+Processing sample NCBI832
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:  21%|██        | 89/434 [08:32<33:08,  0.17it/s, v_num=9]Epoch 0:  21%|██        | 89/434 [08:32<33:08,  0.17it/s, v_num=9]
+Processing sample NCBI632
+Patches shape after loading: (2743, 3, 112, 112)
+Patches shape as tensor: torch.Size([2743, 3, 112, 112])
+Input patches shape: torch.Size([1, 2743, 37632])
+Epoch 0:  21%|██        | 90/434 [08:41<33:12,  0.17it/s, v_num=9]Epoch 0:  21%|██        | 90/434 [08:41<33:12,  0.17it/s, v_num=9]
+Processing sample TENX116
+Patches shape after loading: (3090, 3, 112, 112)
+Patches shape as tensor: torch.Size([3090, 3, 112, 112])
+Input patches shape: torch.Size([1, 3090, 37632])
+Epoch 0:  21%|██        | 91/434 [08:48<33:12,  0.17it/s, v_num=9]Epoch 0:  21%|██        | 91/434 [08:48<33:12,  0.17it/s, v_num=9]
+Processing sample SPA113
+Patches shape after loading: (318, 3, 112, 112)
+Patches shape as tensor: torch.Size([318, 3, 112, 112])
+Input patches shape: torch.Size([1, 318, 37632])
+Epoch 0:  21%|██        | 92/434 [08:50<32:52,  0.17it/s, v_num=9]Epoch 0:  21%|██        | 92/434 [08:50<32:52,  0.17it/s, v_num=9]
+Processing sample TENX56
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:  21%|██▏       | 93/434 [09:06<33:23,  0.17it/s, v_num=9]Epoch 0:  21%|██▏       | 93/434 [09:06<33:23,  0.17it/s, v_num=9]
+Processing sample NCBI520
+Patches shape after loading: (527, 3, 112, 112)
+Patches shape as tensor: torch.Size([527, 3, 112, 112])
+Input patches shape: torch.Size([1, 527, 37632])
+Epoch 0:  22%|██▏       | 94/434 [09:08<33:05,  0.17it/s, v_num=9]Epoch 0:  22%|██▏       | 94/434 [09:08<33:05,  0.17it/s, v_num=9]
+Processing sample SPA39
+Patches shape after loading: (209, 3, 112, 112)
+Patches shape as tensor: torch.Size([209, 3, 112, 112])
+Input patches shape: torch.Size([1, 209, 37632])
+Epoch 0:  22%|██▏       | 95/434 [09:10<32:42,  0.17it/s, v_num=9]Epoch 0:  22%|██▏       | 95/434 [09:10<32:42,  0.17it/s, v_num=9]
+Processing sample NCBI642
+Patches shape after loading: (1987, 3, 112, 112)
+Patches shape as tensor: torch.Size([1987, 3, 112, 112])
+Input patches shape: torch.Size([1, 1987, 37632])
+Epoch 0:  22%|██▏       | 96/434 [09:16<32:40,  0.17it/s, v_num=9]Epoch 0:  22%|██▏       | 96/434 [09:16<32:40,  0.17it/s, v_num=9]
+Processing sample MEND153
+Patches shape after loading: (1820, 3, 112, 112)
+Patches shape as tensor: torch.Size([1820, 3, 112, 112])
+Input patches shape: torch.Size([1, 1820, 37632])
+Epoch 0:  22%|██▏       | 97/434 [09:23<32:36,  0.17it/s, v_num=9]Epoch 0:  22%|██▏       | 97/434 [09:23<32:36,  0.17it/s, v_num=9]
+Processing sample SPA82
+Patches shape after loading: (578, 3, 112, 112)
+Patches shape as tensor: torch.Size([578, 3, 112, 112])
+Input patches shape: torch.Size([1, 578, 37632])
+Epoch 0:  23%|██▎       | 98/434 [09:26<32:21,  0.17it/s, v_num=9]Epoch 0:  23%|██▎       | 98/434 [09:26<32:21,  0.17it/s, v_num=9]
+Processing sample TENX118
+Patches shape after loading: (3115, 3, 112, 112)
+Patches shape as tensor: torch.Size([3115, 3, 112, 112])
+Input patches shape: torch.Size([1, 3115, 37632])
+Epoch 0:  23%|██▎       | 99/434 [09:33<32:21,  0.17it/s, v_num=9]Epoch 0:  23%|██▎       | 99/434 [09:33<32:21,  0.17it/s, v_num=9]
+Processing sample TENX128
+Patches shape after loading: (2279, 3, 112, 112)
+Patches shape as tensor: torch.Size([2279, 3, 112, 112])
+Input patches shape: torch.Size([1, 2279, 37632])
+Epoch 0:  23%|██▎       | 100/434 [09:41<32:21,  0.17it/s, v_num=9]Epoch 0:  23%|██▎       | 100/434 [09:41<32:21,  0.17it/s, v_num=9]
+Processing sample NCBI477
+Patches shape after loading: (791, 3, 112, 112)
+Patches shape as tensor: torch.Size([791, 3, 112, 112])
+Input patches shape: torch.Size([1, 791, 37632])
+Epoch 0:  23%|██▎       | 101/434 [09:44<32:07,  0.17it/s, v_num=9]Epoch 0:  23%|██▎       | 101/434 [09:44<32:07,  0.17it/s, v_num=9]
+Processing sample MEND63
+Patches shape after loading: (1433, 3, 112, 112)
+Patches shape as tensor: torch.Size([1433, 3, 112, 112])
+Input patches shape: torch.Size([1, 1433, 37632])
+Epoch 0:  24%|██▎       | 102/434 [09:50<32:00,  0.17it/s, v_num=9]Epoch 0:  24%|██▎       | 102/434 [09:50<32:00,  0.17it/s, v_num=9]
+Processing sample NCBI829
+Patches shape after loading: (4992, 3, 112, 112)
+Patches shape as tensor: torch.Size([4992, 3, 112, 112])
+Input patches shape: torch.Size([1, 4992, 37632])
+Epoch 0:  24%|██▎       | 103/434 [10:05<32:25,  0.17it/s, v_num=9]Epoch 0:  24%|██▎       | 103/434 [10:05<32:25,  0.17it/s, v_num=9]
+Processing sample NCBI536
+Patches shape after loading: (444, 3, 112, 112)
+Patches shape as tensor: torch.Size([444, 3, 112, 112])
+Input patches shape: torch.Size([1, 444, 37632])
+Epoch 0:  24%|██▍       | 104/434 [10:07<32:07,  0.17it/s, v_num=9]Epoch 0:  24%|██▍       | 104/434 [10:07<32:07,  0.17it/s, v_num=9]
+Processing sample MEND18
+Patches shape after loading: (209, 3, 112, 112)
+Patches shape as tensor: torch.Size([209, 3, 112, 112])
+Input patches shape: torch.Size([1, 209, 37632])
+Epoch 0:  24%|██▍       | 105/434 [10:09<31:50,  0.17it/s, v_num=9]Epoch 0:  24%|██▍       | 105/434 [10:09<31:50,  0.17it/s, v_num=9]
+Processing sample TENX132
+Patches shape after loading: (9682, 3, 112, 112)
+Patches shape as tensor: torch.Size([9682, 3, 112, 112])
+Input patches shape: torch.Size([1, 9682, 37632])
+Epoch 0:  24%|██▍       | 106/434 [10:33<32:41,  0.17it/s, v_num=9]Epoch 0:  24%|██▍       | 106/434 [10:33<32:41,  0.17it/s, v_num=9]
+Processing sample MEND16
+Patches shape after loading: (193, 3, 112, 112)
+Patches shape as tensor: torch.Size([193, 3, 112, 112])
+Input patches shape: torch.Size([1, 193, 37632])
+Epoch 0:  25%|██▍       | 107/434 [10:35<32:23,  0.17it/s, v_num=9]Epoch 0:  25%|██▍       | 107/434 [10:35<32:23,  0.17it/s, v_num=9]
+Processing sample NCBI519
+Patches shape after loading: (524, 3, 112, 112)
+Patches shape as tensor: torch.Size([524, 3, 112, 112])
+Input patches shape: torch.Size([1, 524, 37632])
+Epoch 0:  25%|██▍       | 108/434 [10:38<32:07,  0.17it/s, v_num=9]Epoch 0:  25%|██▍       | 108/434 [10:38<32:07,  0.17it/s, v_num=9]
+Processing sample INT2
+Patches shape after loading: (2580, 3, 112, 112)
+Patches shape as tensor: torch.Size([2580, 3, 112, 112])
+Input patches shape: torch.Size([1, 2580, 37632])
+Epoch 0:  25%|██▌       | 109/434 [10:46<32:07,  0.17it/s, v_num=9]Epoch 0:  25%|██▌       | 109/434 [10:46<32:07,  0.17it/s, v_num=9]
+Processing sample NCBI479
+Patches shape after loading: (1040, 3, 112, 112)
+Patches shape as tensor: torch.Size([1040, 3, 112, 112])
+Input patches shape: torch.Size([1, 1040, 37632])
+Epoch 0:  25%|██▌       | 110/434 [10:49<31:54,  0.17it/s, v_num=9]Epoch 0:  25%|██▌       | 110/434 [10:49<31:54,  0.17it/s, v_num=9]
+Processing sample NCBI705
+Patches shape after loading: (560, 3, 112, 112)
+Patches shape as tensor: torch.Size([560, 3, 112, 112])
+Input patches shape: torch.Size([1, 560, 37632])
+Epoch 0:  26%|██▌       | 111/434 [10:52<31:38,  0.17it/s, v_num=9]Epoch 0:  26%|██▌       | 111/434 [10:52<31:38,  0.17it/s, v_num=9]
+Processing sample NCBI768
+Patches shape after loading: (638, 3, 112, 112)
+Patches shape as tensor: torch.Size([638, 3, 112, 112])
+Input patches shape: torch.Size([1, 638, 37632])
+Epoch 0:  26%|██▌       | 112/434 [10:55<31:25,  0.17it/s, v_num=9]Epoch 0:  26%|██▌       | 112/434 [10:55<31:25,  0.17it/s, v_num=9]
+Processing sample NCBI865
+Patches shape after loading: (3090, 3, 112, 112)
+Patches shape as tensor: torch.Size([3090, 3, 112, 112])
+Input patches shape: torch.Size([1, 3090, 37632])
+Epoch 0:  26%|██▌       | 113/434 [11:03<31:23,  0.17it/s, v_num=9]Epoch 0:  26%|██▌       | 113/434 [11:03<31:23,  0.17it/s, v_num=9]
+Processing sample SPA30
+Patches shape after loading: (211, 3, 112, 112)
+Patches shape as tensor: torch.Size([211, 3, 112, 112])
+Input patches shape: torch.Size([1, 211, 37632])
+Epoch 0:  26%|██▋       | 114/434 [11:04<31:04,  0.17it/s, v_num=9]Epoch 0:  26%|██▋       | 114/434 [11:04<31:04,  0.17it/s, v_num=9]
+Processing sample NCBI700
+Patches shape after loading: (601, 3, 112, 112)
+Patches shape as tensor: torch.Size([601, 3, 112, 112])
+Input patches shape: torch.Size([1, 601, 37632])
+Epoch 0:  26%|██▋       | 115/434 [11:07<30:50,  0.17it/s, v_num=9]Epoch 0:  26%|██▋       | 115/434 [11:07<30:50,  0.17it/s, v_num=9]
+Processing sample NCBI770
+Patches shape after loading: (666, 3, 112, 112)
+Patches shape as tensor: torch.Size([666, 3, 112, 112])
+Input patches shape: torch.Size([1, 666, 37632])
+Epoch 0:  27%|██▋       | 116/434 [11:10<30:38,  0.17it/s, v_num=9]Epoch 0:  27%|██▋       | 116/434 [11:10<30:38,  0.17it/s, v_num=9]
+Processing sample NCBI856
+Patches shape after loading: (1607, 3, 112, 112)
+Patches shape as tensor: torch.Size([1607, 3, 112, 112])
+Input patches shape: torch.Size([1, 1607, 37632])
+Epoch 0:  27%|██▋       | 117/434 [11:15<30:28,  0.17it/s, v_num=9]Epoch 0:  27%|██▋       | 117/434 [11:15<30:28,  0.17it/s, v_num=9]
+Processing sample MEND34
+Patches shape after loading: (3294, 3, 112, 112)
+Patches shape as tensor: torch.Size([3294, 3, 112, 112])
+Input patches shape: torch.Size([1, 3294, 37632])
+Epoch 0:  27%|██▋       | 118/434 [11:25<30:36,  0.17it/s, v_num=9]Epoch 0:  27%|██▋       | 118/434 [11:25<30:36,  0.17it/s, v_num=9]
+Processing sample MEND15
+Patches shape after loading: (202, 3, 112, 112)
+Patches shape as tensor: torch.Size([202, 3, 112, 112])
+Input patches shape: torch.Size([1, 202, 37632])
+Epoch 0:  27%|██▋       | 119/434 [11:27<30:20,  0.17it/s, v_num=9]Epoch 0:  27%|██▋       | 119/434 [11:27<30:20,  0.17it/s, v_num=9]
+Processing sample MISC50
+Patches shape after loading: (4297, 3, 112, 112)
+Patches shape as tensor: torch.Size([4297, 3, 112, 112])
+Input patches shape: torch.Size([1, 4297, 37632])
+Epoch 0:  28%|██▊       | 120/434 [11:40<30:33,  0.17it/s, v_num=9]Epoch 0:  28%|██▊       | 120/434 [11:40<30:33,  0.17it/s, v_num=9]
+Processing sample MISC16
+Patches shape after loading: (3154, 3, 112, 112)
+Patches shape as tensor: torch.Size([3154, 3, 112, 112])
+Input patches shape: torch.Size([1, 3154, 37632])
+Epoch 0:  28%|██▊       | 121/434 [11:49<30:36,  0.17it/s, v_num=9]Epoch 0:  28%|██▊       | 121/434 [11:49<30:36,  0.17it/s, v_num=9]
+Processing sample NCBI714
+Patches shape after loading: (3007, 3, 112, 112)
+Patches shape as tensor: torch.Size([3007, 3, 112, 112])
+Input patches shape: torch.Size([1, 3007, 37632])
+Epoch 0:  28%|██▊       | 122/434 [12:00<30:43,  0.17it/s, v_num=9]Epoch 0:  28%|██▊       | 122/434 [12:00<30:43,  0.17it/s, v_num=9]
+Processing sample MEND92
+Patches shape after loading: (1071, 3, 112, 112)
+Patches shape as tensor: torch.Size([1071, 3, 112, 112])
+Input patches shape: torch.Size([1, 1071, 37632])
+Epoch 0:  28%|██▊       | 123/434 [12:04<30:32,  0.17it/s, v_num=9]Epoch 0:  28%|██▊       | 123/434 [12:04<30:32,  0.17it/s, v_num=9]
+Processing sample NCBI699
+Patches shape after loading: (787, 3, 112, 112)
+Patches shape as tensor: torch.Size([787, 3, 112, 112])
+Input patches shape: torch.Size([1, 787, 37632])
+Epoch 0:  29%|██▊       | 124/434 [12:08<30:20,  0.17it/s, v_num=9]Epoch 0:  29%|██▊       | 124/434 [12:08<30:20,  0.17it/s, v_num=9]
+Processing sample ZEN37
+Patches shape after loading: (1656, 3, 112, 112)
+Patches shape as tensor: torch.Size([1656, 3, 112, 112])
+Input patches shape: torch.Size([1, 1656, 37632])
+Epoch 0:  29%|██▉       | 125/434 [12:14<30:16,  0.17it/s, v_num=9]Epoch 0:  29%|██▉       | 125/434 [12:14<30:16,  0.17it/s, v_num=9]
+Processing sample TENX158
+Patches shape after loading: (2179, 3, 112, 112)
+Patches shape as tensor: torch.Size([2179, 3, 112, 112])
+Input patches shape: torch.Size([1, 2179, 37632])
+Epoch 0:  29%|██▉       | 126/434 [12:20<30:10,  0.17it/s, v_num=9]Epoch 0:  29%|██▉       | 126/434 [12:20<30:10,  0.17it/s, v_num=9]slurmstepd: error: *** JOB 35816797 ON mg3 CANCELLED AT 2025-07-30T09:44:02 ***

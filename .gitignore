@@ -1,1 +1,4 @@
 *.pyc
+*metrics.csv
+*.ckpt
+.vscode/settings.json
